@@ -80,6 +80,11 @@ class Player(BasePlayer):
     # Engagement check question
     eq = likert1('member')
 
+    # Reading time
+    reading_time_bg = models.FloatField(blank=True)
+    reading_time_wv = models.FloatField(blank=True)
+    reading_time_p = models.FloatField(blank=True)
+
     # Pretest intention check question
     associate = models.BooleanField()
     associate_des = models.LongStringField(blank=True)
@@ -170,7 +175,8 @@ class Introduction(Page):
 
 
 class Background(Page):
-    pass
+    form_model = 'player'
+    form_fields = ['reading_time_bg']
 
 
 class CWV(Page):
@@ -179,7 +185,7 @@ class CWV(Page):
         return (player.task == "CWV_CP" or player.task == "CWV_SP")
 
     form_model = 'player'
-    form_fields = ['cq_wv']
+    form_fields = ['cq_wv', 'reading_time_wv']
 
 
 class SWV(Page):
@@ -188,7 +194,7 @@ class SWV(Page):
         return (player.task == "SWV_CP" or player.task == "SWV_SP")
 
     form_model = 'player'
-    form_fields = ['cq_wv']
+    form_fields = ['cq_wv', 'reading_time_wv']
 
 
 class SWVcul(Page):
@@ -197,7 +203,7 @@ class SWVcul(Page):
         return (player.task == "SWV_CP_culprit" or player.task == "SWV_SP_culprit")
 
     form_model = 'player'
-    form_fields = ['cq_wv']
+    form_fields = ['cq_wv', 'reading_time_wv']
 
 
 class Q1WV(Page):
@@ -211,7 +217,7 @@ class CWVCP(Page):
         return player.task == "CWV_CP"
 
     form_model = 'player'
-    form_fields = ['cq_p']
+    form_fields = ['cq_p', 'reading_time_p']
 
 
 class SWVSP(Page):
@@ -220,7 +226,7 @@ class SWVSP(Page):
         return player.task == "SWV_SP"
 
     form_model = 'player'
-    form_fields = ['cq_p']
+    form_fields = ['cq_p', 'reading_time_p']
 
 
 class SWVculSP(Page):
@@ -229,7 +235,7 @@ class SWVculSP(Page):
         return player.task == "SWV_SP_culprit"
 
     form_model = 'player'
-    form_fields = ['cq_p']
+    form_fields = ['cq_p', 'reading_time_p']
 
 
 class CWVSP(Page):
@@ -238,7 +244,7 @@ class CWVSP(Page):
         return player.task == "CWV_SP"
 
     form_model = 'player'
-    form_fields = ['cq_p']
+    form_fields = ['cq_p', 'reading_time_p']
 
 
 class SWVCP(Page):
@@ -247,7 +253,7 @@ class SWVCP(Page):
         return player.task == "SWV_CP"
 
     form_model = 'player'
-    form_fields = ['cq_p']
+    form_fields = ['cq_p', 'reading_time_p']
 
 
 class SWVculCP(Page):
@@ -256,7 +262,7 @@ class SWVculCP(Page):
         return player.task == "SWV_CP_culprit"
 
     form_model = 'player'
-    form_fields = ['cq_p']
+    form_fields = ['cq_p', 'reading_time_p']
 
 
 class Q2P(Page):

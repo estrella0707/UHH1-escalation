@@ -6,7 +6,6 @@
 {{ endblock }}
 
 {{ block content }}
-
 <a class="btn btn-primary" data-bs-toggle="collapse" href="#bg"
        role="button" aria-expanded="false" aria-controls="bg">
     Review the Background Information
@@ -29,16 +28,28 @@
 
 <img src="{{ static 'Pretest1/Slide2.jpg' }}" style="max-width: 50%; height: auto; display: block;" class="rounded mx-auto d-block">
 
-{{ formfields }}
+<b>According to the activists, what is causing soil acidification on Planet X?</b>
+{{ form.cq_wv }}
+<input type="hidden" name="reading_time_wv" id="id_response_time" value="">
 
 <button class="btn btn-primary" style="display: none" id="next-button">Next</button>
-
 {{ endblock }}
 
 {{ block scripts }}
     <script>
+        // Record the time when the page loads
+        var startTime = new Date().getTime();
+
+        // After 15 seconds, display the "Next" button
         setTimeout(function() {
         document.getElementById('next-button').style.display = 'block';
         }, 15 * 1000);
+
+        // When the "Next" button is clicked, calculate the elapsed time
+        document.getElementById('next-button').addEventListener('click', function() {
+        var endTime = new Date().getTime();
+        var responseTime = (endTime - startTime) / 1000; // response time in seconds
+        document.getElementById('id_response_time').value = responseTime;
+    });
     </script>
 {{ endblock }}

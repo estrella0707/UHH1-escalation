@@ -12,7 +12,6 @@
        role="button" aria-expanded="false" aria-controls="bg">
     Review the Background Information
 </a>
-
 <div class="collapse" id="bg">
     <div class="card card-body">
         You are a citizen of Planet X, a technologically advanced world that has flourished for generations. The planet has long relied on stable agricultural systems to ensure food security and economic prosperity.<br>
@@ -28,20 +27,34 @@
         You will now explore activists’ perspectives on the crisis and their proposed policy before deciding whether to support or oppose it.<br>
     </div>
 </div>
+<br>
 
 <img src="{{ static 'Pretest1/Slide1.jpg' }}" style="max-width: 49.5%; height: auto; display: block;" class="rounded float-start">
 <img src="{{ static 'Pretest1/Slide6.jpg' }}" style="max-width: 49.5%; height: auto; display: block;" class="rounded float-end">
 
-{{ formfields }}
+<b>According to the activists, how does the proposed policy address this issue?</b>
+{{ form.cq_p }}
+<input type="hidden" name="reading_time_p" id="id_response_time" value="">
 
+<br>
 <button class="btn btn-primary" style="display: none" id="next-button">Next</button>
-
 {{ endblock }}
 
 {{ block scripts }}
     <script>
+        // Record the time when the page loads
+        var startTime = new Date().getTime();
+
+        // After 15 seconds, display the "Next" button
         setTimeout(function() {
         document.getElementById('next-button').style.display = 'block';
         }, 15 * 1000);
+
+        // When the "Next" button is clicked, calculate the elapsed time
+        document.getElementById('next-button').addEventListener('click', function() {
+        var endTime = new Date().getTime();
+        var responseTime = (endTime - startTime) / 1000; // response time in seconds
+        document.getElementById('id_response_time').value = responseTime;
+    });
     </script>
 {{ endblock }}
