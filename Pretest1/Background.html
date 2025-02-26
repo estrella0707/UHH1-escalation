@@ -1,0 +1,34 @@
+{{ block title }}
+Background Information
+{{ endblock }}
+
+{{ block content }}
+<p>
+
+    <img src="{{ static 'Pretest1/Picture1.jpg' }}" style="max-width: 38%; height: auto;
+    display: block;" class="rounded float-end ms-3 mb-3">
+
+    You are a citizen of Planet X, a technologically advanced world that has flourished for generations. The planet has long relied on stable agricultural systems to ensure food security and economic prosperity. <br>
+<br>
+    Recently, however, an issue has emerged that is dividing public opinion. Farmers have reported increasing <b>soil acidity</b>, causing reduced crop yields.<br>
+<br>
+    At the same time, a species known as <b>Tivarns</b> has appeared across farmland regions. These creatures were accidentally transported aboard automated cargo ships that frequently travel between Planet X and Planet Y. Upon arrival, the Tivarns lost their memory and no longer recognize their home, adapting instead to their new environment on Planet X.<br>
+<br>
+    The government considers these events part of a <b>natural cycle</b>. Officials argue that the soil will stabilize on its own and that the Tivarns will eventually integrate into the planet’s ecosystem or disappear over time. To address temporary food shortages, the government proposes <b>importing food from other planets</b>.<br>
+<br>
+    However, a group of activists believes otherwise. They have gathered support to propose a <b>policy initiative for the upcoming referendum</b>.<br>
+<br>
+    You will now explore activists’ perspectives on the crisis and their proposed policy before deciding whether to support or oppose it.<br>
+</p>
+
+<button class="btn btn-primary" style="display: none" id="next-button">Read the Initiative Leaflet</button>
+
+{{ endblock }}
+
+{{ block scripts }}
+    <script>
+        setTimeout(function() {
+        document.getElementById('next-button').style.display = 'block';
+        }, 30 * 1000);
+    </script>
+{{ endblock }}
