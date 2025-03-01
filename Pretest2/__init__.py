@@ -16,36 +16,36 @@ def creating_session(subsession):
 
 def cq_b1_choices(player):
     # Shuffle choices at the first time loading the page
-    if not hasattr(player, 'cq_b1_choices'):
+    if 'cq_b1_choices' not in player.participant.vars:
         choices = ['Too much rain is flooding their fields.',
                    'The soil is becoming too acidic, and strange creatures called Tivarns have appeared.',
                    'Robots are taking over farming jobs.',
                    'Crops are growing too fast and causing food waste.']
         random.shuffle(choices)
-        player.cq_b1_choices = choices
-    return player.cq_b1_choices
+        player.participant.vars['cq_b1_choices'] = choices
+    return player.participant.vars['cq_b1_choices']
 
 def cq_b2_choices(player):
     # Shuffle choices at the first time loading the page
-    if not hasattr(player, 'cq_b2_choices'):
+    if 'cq_b2_choices' not in player.participant.vars:
         choices = ['Import food and compensate the farmers.',
                    'Remove all the Tivarns immediately.',
                    'Build greenhouses to grow food in space.',
                    'Ban farming to focus on technology.']
         random.shuffle(choices)
-        player.cq_b2_choices = choices
-    return player.cq_b2_choices
+        player.participant.vars['cq_b2_choices'] = choices
+    return player.participant.vars['cq_b2_choices']
 
 def cq_wv_choices(player):
     # Shuffle choices at the first time loading the page
-    if not hasattr(player, 'cq_b2_choices'):
+    if 'cq_wv_choices' not in player.participant.vars:
         choices = ['A rise in solar radiation which affects atmospheric chemistry.',
                    'The acidic waste produced by the a creature called Tivarns.',
                    'A newly introduced agricultural method.',
                    'The inaction of the government.']
         random.shuffle(choices)
-        player.cq_wv_choices = choices
-    return player.cq_wv_choices
+        player.participant.vars['cq_wv_choices'] = choices
+    return player.participant.vars['cq_wv_choices']
 
 def likert1(label):
     return models.IntegerField(
@@ -171,13 +171,17 @@ class Player(BasePlayer):
         blank=True,
     )
     intuition1 = models.IntegerField(
-        label='A bat and a ball together cost $110. The bat costs $100 more than the ball. How much does the ball cost? (Please enter an integer only)',
+        label='A bat and a ball together cost $110. The bat costs $100 more than the ball. '
+              'How much does the ball cost? (Please enter an integer only)',
     )
     intuition2 = models.IntegerField(
-        label='If it takes 5 machines 5 minutes to make 5 widgets, how long would it take 100 machines to make 100 widgets? (Please enter an integer only)',
+        label='If it takes 5 machines 5 minutes to make 5 widgets, how long would it take 100 '
+              'machines to make 100 widgets? (Please enter an integer only)',
     )
     intuition3 = models.IntegerField(
-        label='In a lake, there is a patch of lily pads. Every day, the patch doubles in size. If it takes 48 days for the patch to cover the entire lake, how many days will it take for the patch to cover half of the lake? (Please enter an integer only)',
+        label='In a lake, there is a patch of lily pads. Every day, the patch doubles in size. '
+              'If it takes 48 days for the patch to cover the entire lake, how many days will '
+              'it take for the patch to cover half of the lake? (Please enter an integer only)',
     )
     populism1 = likert1('decision')
     populism2 = likert1('lead')
