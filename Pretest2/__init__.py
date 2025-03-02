@@ -100,7 +100,7 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect,
     )
     cq_wv = models.StringField(
-        label='According to the activists, what is causing soil acidification on Planet X?',
+        label='According to the initiative leaflet, what is causing soil acidification on Planet X?',
         widget=widgets.RadioSelect,
     )
 
