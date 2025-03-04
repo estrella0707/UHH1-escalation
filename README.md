@@ -4,7 +4,7 @@ Chapter 1 for a cumulative doctoral dissertation. <br>
 Contributing to the DFG project "Big Structural Change - Mass Immigration". <br>
 
 ## App names
-Pretest1: The improved streamlined code for the pretest of Study 1&2. Redundant pages are removed; instead, conditional display of treatment pictures are implemented in one single page for both World View and Policy.<br>
+Pretest2: The improved streamlined code for the pretest of Study 1&2. Redundant pages are removed; instead, conditional display of treatment pictures are implemented in one single page for both World View and Policy.<br>
 
 ## Experiment times
 Pretest1 for Study 1&2: <br>
