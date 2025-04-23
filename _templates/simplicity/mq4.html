@@ -1,0 +1,37 @@
+<table class="table">
+    <colgroup>
+        <col style="width:40%">
+        <col style="width:15%">
+        <col style="width:10%">
+        <col style="width:10%">
+        <col style="width:10%">
+        <col style="width:15%">
+    </colgroup>
+    <style type="text/css">
+        .txtVertical
+        {
+            position: relative;
+            left: 13px;
+        }
+    </style>
+    <thead>
+    <tr align = "center">
+        <th></th>
+        <th>Very simple</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>Very complicated</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th>
+            How do you think of the policy suggested by the initiative?
+        </th>
+        {{ for choice in form.mq4 }}
+        <td class="txtVertical"><center>{{ choice }}</center></td>
+        {{ endfor }}
+    </tr>
+    </tbody>
+</table>

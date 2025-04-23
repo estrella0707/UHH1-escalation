@@ -9,14 +9,10 @@ Please answer the following questions.
 {{ block content }}
 
 <form method="post">
-{{ formfield player.age}}(Please leave this blank if you prefer not to say.)
+{{ formfield player.age}}
 <br>
 
-<br>
 {{ formfield player.gender}}
-<div id="gender_other">
-    {{ formfield player.gender_other }}
-</div>
 <br>
 
 {{ formfield player.education}}
@@ -31,16 +27,14 @@ Please answer the following questions.
 </div>
 <br>
 
-{{ formfield player.intuition1 }}
-<br>
-{{ formfield player.intuition2 }}
-<br>
-{{ formfield player.intuition3 }}
-<br>
-
 <table class="table">
     <colgroup>
         <col style="width:40%">
+        <col style="width:15%">
+        <col style="width:10%">
+        <col style="width:10%">
+        <col style="width:10%">
+        <col style="width:15%">
     </colgroup>
     <style type="text/css">
         .txtVertical
@@ -53,9 +47,9 @@ Please answer the following questions.
     <tr align = "center">
         <th></th>
         <th>Strongly disagree</th>
-        <th>Slightly disagree</th>
-        <th>Neutral</th>
-        <th>Slightly agree</th>
+        <th></th>
+        <th></th>
+        <th></th>
         <th>Strongly agree</th>
     </tr>
     </thead>
@@ -74,6 +68,11 @@ Please answer the following questions.
 <table class="table">
     <colgroup>
         <col style="width:40%">
+        <col style="width:15%">
+        <col style="width:10%">
+        <col style="width:10%">
+        <col style="width:10%">
+        <col style="width:15%">
     </colgroup>
     <style type="text/css">
         .txtVertical
@@ -86,9 +85,9 @@ Please answer the following questions.
     <tr align = "center">
         <th></th>
         <th>Strongly disagree</th>
-        <th>Slightly disagree</th>
-        <th>Neutral</th>
-        <th>Slightly agree</th>
+        <th></th>
+        <th></th>
+        <th></th>
         <th>Strongly agree</th>
     </tr>
     </thead>
@@ -103,11 +102,22 @@ Please answer the following questions.
     </tr>
     </tbody>
 </table>
+<br>
 
 {{ formfield player.source}}
 <div id="source_other">
     {{ formfield player.source_other }}
 </div>
+<br>
+
+{{ formfield player.intuition1 }}
+<br>
+{{ formfield player.intuition2 }}
+<br>
+{{ formfield player.intuition3 }}
+<br>
+
+{{ formfield player.feedback}}
 <br>
 
 </form>
@@ -154,7 +164,6 @@ toggle_other_visible = function(name)
     }
 }
 
-toggle_other_visible("gender");
 toggle_other_visible("party");
 toggle_other_visible("source");
 

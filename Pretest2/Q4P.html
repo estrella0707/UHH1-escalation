@@ -6,16 +6,26 @@
 {{ endblock }}
 
 {{ block content }}
-<p>
-    Based on the information you just read, please answer the following questions.<br>
-</p>
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#bg"
+       role="button" aria-expanded="false" aria-controls="bg">
+    Review the Initiative Argument and Policy
+</a> <br>
+<div class="collapse" id="bg">
+    <img src="{{ static picture_wv }}" style="max-width: 49.5%; height: auto; display: block;" class="rounded float-start">
+    <img src="{{ static picture_p }}" style="max-width: 49.5%; height: auto; display: block;" class="rounded float-end">
+</div>
+<br>
 
-<b>What is your opinion on this initiative in the referendum?</b>
-{{ form.policy_choice }}
+<p>Based on the information you just read, please answer the following questions.</p>
 
 <table class="table">
     <colgroup>
         <col style="width:40%">
+        <col style="width:15%">
+        <col style="width:10%">
+        <col style="width:10%">
+        <col style="width:10%">
+        <col style="width:15%">
     </colgroup>
     <style type="text/css">
         .txtVertical
@@ -27,19 +37,19 @@
     <thead>
     <tr align = "center">
         <th></th>
-        <th>1</th>
-        <th>2</th>
-        <th>3</th>
-        <th>4</th>
-        <th>5</th>
+        <th>Strongly against</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>Strongly for</th>
     </tr>
     </thead>
     <tbody>
     <tr>
         <th>
-            You have five votes to indicate how strong you support or oppose this initiative; how many would you assign?
+            What is your opinion on this initiative?
         </th>
-        {{ for choice in form.policy_votes }}
+        {{ for choice in form.policy_opinion }}
         <td class="txtVertical"><center>{{ choice }}</center></td>
         {{ endfor }}
     </tr>
@@ -51,6 +61,11 @@
 <table class="table">
     <colgroup>
         <col style="width:40%">
+        <col style="width:15%">
+        <col style="width:10%">
+        <col style="width:10%">
+        <col style="width:10%">
+        <col style="width:15%">
     </colgroup>
     <style type="text/css">
         .txtVertical
@@ -63,9 +78,9 @@
     <tr align = "center">
         <th></th>
         <th>Very unconfident</th>
-        <th>Somehow unconfident</th>
-        <th>Neutral</th>
-        <th>Somehow confident</th>
+        <th></th>
+        <th></th>
+        <th></th>
         <th>Very confident</th>
     </tr>
     </thead>
@@ -83,38 +98,9 @@
 
 <br>
 
-<table class="table">
-    <colgroup>
-        <col style="width:40%">
-    </colgroup>
-    <style type="text/css">
-        .txtVertical
-        {
-            position: relative;
-            left: 13px;
-        }
-    </style>
-    <thead>
-    <tr align = "center">
-        <th></th>
-        <th>Not at all connected</th>
-        <th>Slightly connected</th>
-        <th>Moderately connected</th>
-        <th>Mostly connected</th>
-        <th>Completely connected</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th>
-            How much do you feel you are a member of this world?
-        </th>
-        {{ for choice in form.eq }}
-        <td class="txtVertical"><center>{{ choice }}</center></td>
-        {{ endfor }}
-    </tr>
-    </tbody>
-</table>
+<b>Make your voting decision:</b>
+{{ form.policy_choice }}
+<br>
 
 {{ next_button }}
 

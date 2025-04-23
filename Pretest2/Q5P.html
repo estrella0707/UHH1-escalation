@@ -6,48 +6,34 @@
 {{ endblock }}
 
 {{ block content }}
-<p>
-    Based on the information you just read, please answer the following questions.<br>
-</p>
-
-<table class="table">
-    <colgroup>
-        <col style="width:40%">
-    </colgroup>
-    <style type="text/css">
-        .txtVertical
-        {
-            position: relative;
-            left: 13px;
-        }
-    </style>
-    <thead>
-    <tr align = "center">
-        <th></th>
-        <th>Very Simple</th>
-        <th>Somehow Simple</th>
-        <th>Neutral</th>
-        <th>Somehow Complicated</th>
-        <th>Very Complicated</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th>
-            How do you think of the policy suggested by the initiative?
-        </th>
-        {{ for choice in form.mq3 }}
-        <td class="txtVertical"><center>{{ choice }}</center></td>
-        {{ endfor }}
-    </tr>
-    </tbody>
-</table>
-
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#bg"
+       role="button" aria-expanded="false" aria-controls="bg">
+    Review the Initiative Argument and Policy
+</a> <br>
+<div class="collapse" id="bg">
+    <img src="{{ static picture_wv }}" style="max-width: 49.5%; height: auto; display: block;" class="rounded float-start">
+    <img src="{{ static picture_p }}" style="max-width: 49.5%; height: auto; display: block;" class="rounded float-end">
+</div>
 <br>
 
+<p>Based on the information you just read, please answer the following questions.</p>
+
+{% if show_first_table_first %}
+{% include "simplicity/mq4.html" %}
+{% include "simplicity/mq5.html" %}
+{% else %}
+{% include "simplicity/mq5.html" %}
+{% include "simplicity/mq4.html" %}
+{% endif %}
+
 <table class="table">
     <colgroup>
         <col style="width:40%">
+        <col style="width:15%">
+        <col style="width:10%">
+        <col style="width:10%">
+        <col style="width:10%">
+        <col style="width:15%">
     </colgroup>
     <style type="text/css">
         .txtVertical
@@ -59,30 +45,33 @@
     <thead>
     <tr align = "center">
         <th></th>
-        <th>Definitely Not</th>
-        <th>Unlikely</th>
-        <th>Neutral</th>
-        <th>Likely</th>
-        <th>Definitely</th>
+        <th>Very unhelpful</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>Very helpful</th>
     </tr>
     </thead>
     <tbody>
     <tr>
         <th>
-            Do you think the policy will work immediately?
+            How do you think about the policy's short-term effects?
         </th>
-        {{ for choice in form.mq4 }}
+        {{ for choice in form.mq6 }}
         <td class="txtVertical"><center>{{ choice }}</center></td>
         {{ endfor }}
     </tr>
     </tbody>
 </table>
 
-<br>
-
 <table class="table">
     <colgroup>
         <col style="width:40%">
+        <col style="width:15%">
+        <col style="width:10%">
+        <col style="width:10%">
+        <col style="width:10%">
+        <col style="width:15%">
     </colgroup>
     <style type="text/css">
         .txtVertical
@@ -94,25 +83,62 @@
     <thead>
     <tr align = "center">
         <th></th>
-        <th>Definitely Not</th>
-        <th>Unlikely</th>
-        <th>Neutral</th>
-        <th>Likely</th>
-        <th>Definitely</th>
+        <th>Very unhelpful</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>Very helpful</th>
     </tr>
     </thead>
     <tbody>
     <tr>
         <th>
-            Do you think the policy will work sustainably, i.e., have long-lasting effects?
+            How do you think about the policy's long-term effects?
         </th>
-        {{ for choice in form.mq5 }}
+        {{ for choice in form.mq7 }}
         <td class="txtVertical"><center>{{ choice }}</center></td>
         {{ endfor }}
     </tr>
     </tbody>
 </table>
 
+<table class="table">
+    <colgroup>
+        <col style="width:40%">
+        <col style="width:15%">
+        <col style="width:10%">
+        <col style="width:10%">
+        <col style="width:10%">
+        <col style="width:15%">
+    </colgroup>
+    <style type="text/css">
+        .txtVertical
+        {
+            position: relative;
+            left: 13px;
+        }
+    </style>
+    <thead>
+    <tr align = "center">
+        <th></th>
+        <th>Very much not</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>Very much</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th>
+            How much do you feel you are a member of this world?
+        </th>
+        {{ for choice in form.eq }}
+        <td class="txtVertical"><center>{{ choice }}</center></td>
+        {{ endfor }}
+    </tr>
+    </tbody>
+</table>
 <br>
 
 <b>Did you associate the problem with any real-life problems, parties or policies?</b>

@@ -6,48 +6,37 @@
 {{ endblock }}
 
 {{ block content }}
-<p>
-    Based on the information you just read, please answer the following questions.<br>
-</p>
-
-<table class="table">
-    <colgroup>
-        <col style="width:40%">
-    </colgroup>
-    <style type="text/css">
-        .txtVertical
-        {
-            position: relative;
-            left: 13px;
-        }
-    </style>
-    <thead>
-    <tr align = "center">
-        <th></th>
-        <th>Very simple</th>
-        <th>Somehow simple</th>
-        <th>Neutral</th>
-        <th>Somehow complicated</th>
-        <th>Definitely complicated</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th>
-            How do you think of the explanation given by the initiative?
-        </th>
-        {{ for choice in form.mq1 }}
-        <td class="txtVertical"><center>{{ choice }}</center></td>
-        {{ endfor }}
-    </tr>
-    </tbody>
-</table>
-
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#bg"
+       role="button" aria-expanded="false" aria-controls="bg">
+    Review the Initiative Argument
+</a> <br>
+<div class="collapse" id="bg">
+    <img src="{{ static picture_wv }}" alt="World View Image" style="max-width: 50%; height: auto; display: block;" class="mx-auto">
+</div>
 <br>
 
+<p>Based on the information you just read, please answer the following questions.</p>
+
+{% if show_first_table_first %}
+{% include "simplicity/mq1.html" %}
+<br>
+{% include "simplicity/mq2.html" %}
+<br>
+{% else %}
+{% include "simplicity/mq2.html" %}
+<br>
+{% include "simplicity/mq1.html" %}
+<br>
+{% endif %}
+
 <table class="table">
     <colgroup>
         <col style="width:40%">
+        <col style="width:12%">
+        <col style="width:12%">
+        <col style="width:12%">
+        <col style="width:12%">
+        <col style="width:12%">
     </colgroup>
     <style type="text/css">
         .txtVertical
@@ -59,19 +48,19 @@
     <thead>
     <tr align = "center">
         <th></th>
-        <th>Not at all its fault</th>
-        <th>Slightly its fault</th>
-        <th>Moderately its fault</th>
-        <th>Mostly its fault</th>
-        <th>Completely its fault</th>
+        <th>Not at all</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>Very much so</th>
     </tr>
     </thead>
     <tbody>
     <tr>
         <th>
-            Do you think it is the fault of the Tivarns or not?
+            Do you think it is the fault of the alien creatures or not?
         </th>
-        {{ for choice in form.mq2 }}
+        {{ for choice in form.mq3 }}
         <td class="txtVertical"><center>{{ choice }}</center></td>
         {{ endfor }}
     </tr>
