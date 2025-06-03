@@ -227,12 +227,12 @@ class WV(Page):
     def vars_for_template(player):
         # Map treatment groups to the right picture
         pictures_wv = {
-            'CWV_CP': 'Pretest1/Slide1.jpg',
-            'CWV_SP': 'Pretest1/Slide1.jpg',
-            'SWV_CP': 'Pretest1/Slide2.jpg',
-            'SWV_SP': 'Pretest1/Slide2.jpg',
-            'SWV_CP_culprit': 'Pretest1/Slide3.jpg',
-            'SWV_SP_culprit': 'Pretest1/Slide3.jpg'
+            'CWV_CP': 'Pretest1/Slide1.JPG',
+            'CWV_SP': 'Pretest1/Slide1.JPG',
+            'SWV_CP': 'Pretest1/Slide2.JPG',
+            'SWV_SP': 'Pretest1/Slide2.JPG',
+            'SWV_CP_culprit': 'Pretest1/Slide3.JPG',
+            'SWV_SP_culprit': 'Pretest1/Slide3.JPG'
         }
         return {
             'picture_wv': pictures_wv.get(player.task)
@@ -247,12 +247,12 @@ class Q2WV(Page):
     def vars_for_template(player):
         # Map treatment groups to the right picture
         pictures_wv = {
-            'CWV_CP': 'Pretest1/Slide1.jpg',
-            'CWV_SP': 'Pretest1/Slide1.jpg',
-            'SWV_CP': 'Pretest1/Slide2.jpg',
-            'SWV_SP': 'Pretest1/Slide2.jpg',
-            'SWV_CP_culprit': 'Pretest1/Slide3.jpg',
-            'SWV_SP_culprit': 'Pretest1/Slide3.jpg'
+            'CWV_CP': 'Pretest1/Slide1.JPG',
+            'CWV_SP': 'Pretest1/Slide1.JPG',
+            'SWV_CP': 'Pretest1/Slide2.JPG',
+            'SWV_SP': 'Pretest1/Slide2.JPG',
+            'SWV_CP_culprit': 'Pretest1/Slide3.JPG',
+            'SWV_SP_culprit': 'Pretest1/Slide3.JPG'
         }
         return {
             'picture_wv': pictures_wv.get(player.task)
@@ -267,12 +267,12 @@ class Q3WV(Page):
     def vars_for_template(player):
         # Map treatment groups to the right picture
         pictures_wv = {
-            'CWV_CP': 'Pretest1/Slide1.jpg',
-            'CWV_SP': 'Pretest1/Slide1.jpg',
-            'SWV_CP': 'Pretest1/Slide2.jpg',
-            'SWV_SP': 'Pretest1/Slide2.jpg',
-            'SWV_CP_culprit': 'Pretest1/Slide3.jpg',
-            'SWV_SP_culprit': 'Pretest1/Slide3.jpg'
+            'CWV_CP': 'Pretest1/Slide1.JPG',
+            'CWV_SP': 'Pretest1/Slide1.JPG',
+            'SWV_CP': 'Pretest1/Slide2.JPG',
+            'SWV_SP': 'Pretest1/Slide2.JPG',
+            'SWV_CP_culprit': 'Pretest1/Slide3.JPG',
+            'SWV_SP_culprit': 'Pretest1/Slide3.JPG'
         }
         return {
             'picture_wv': pictures_wv.get(player.task),
@@ -288,20 +288,20 @@ class P(Page):
     def vars_for_template(player):
         # Map treatment groups to the right picture
         pictures_wv = {
-            'CWV_CP': 'Pretest1/Slide1.jpg',
-            'CWV_SP': 'Pretest1/Slide1.jpg',
-            'SWV_CP': 'Pretest1/Slide2.jpg',
-            'SWV_SP': 'Pretest1/Slide2.jpg',
-            'SWV_CP_culprit': 'Pretest1/Slide3.jpg',
-            'SWV_SP_culprit': 'Pretest1/Slide3.jpg'
+            'CWV_CP': 'Pretest1/Slide1.JPG',
+            'CWV_SP': 'Pretest1/Slide1.JPG',
+            'SWV_CP': 'Pretest1/Slide2.JPG',
+            'SWV_SP': 'Pretest1/Slide2.JPG',
+            'SWV_CP_culprit': 'Pretest1/Slide3.JPG',
+            'SWV_SP_culprit': 'Pretest1/Slide3.JPG'
         }
         pictures_p = {
-            'CWV_CP': 'Pretest1/Slide4.jpg',
-            'CWV_SP': 'Pretest1/Slide6.jpg',
-            'SWV_CP': 'Pretest1/Slide7.jpg',
-            'SWV_SP': 'Pretest1/Slide5.jpg',
-            'SWV_CP_culprit': 'Pretest1/Slide7.jpg',
-            'SWV_SP_culprit': 'Pretest1/Slide5.jpg'
+            'CWV_CP': 'Pretest1/Slide4.JPG',
+            'CWV_SP': 'Pretest1/Slide6.JPG',
+            'SWV_CP': 'Pretest1/Slide7.JPG',
+            'SWV_SP': 'Pretest1/Slide5.JPG',
+            'SWV_CP_culprit': 'Pretest1/Slide7.JPG',
+            'SWV_SP_culprit': 'Pretest1/Slide5.JPG'
         }
         return {
             'picture_wv': pictures_wv.get(player.task),
@@ -317,20 +317,20 @@ class Q4P(Page):
     def vars_for_template(player):
         # Map treatment groups to the right picture
         pictures_wv = {
-            'CWV_CP': 'Pretest1/Slide1.jpg',
-            'CWV_SP': 'Pretest1/Slide1.jpg',
-            'SWV_CP': 'Pretest1/Slide2.jpg',
-            'SWV_SP': 'Pretest1/Slide2.jpg',
-            'SWV_CP_culprit': 'Pretest1/Slide3.jpg',
-            'SWV_SP_culprit': 'Pretest1/Slide3.jpg'
+            'CWV_CP': 'Pretest1/Slide1.JPG',
+            'CWV_SP': 'Pretest1/Slide1.JPG',
+            'SWV_CP': 'Pretest1/Slide2.JPG',
+            'SWV_SP': 'Pretest1/Slide2.JPG',
+            'SWV_CP_culprit': 'Pretest1/Slide3.JPG',
+            'SWV_SP_culprit': 'Pretest1/Slide3.JPG'
         }
         pictures_p = {
-            'CWV_CP': 'Pretest1/Slide4.jpg',
-            'CWV_SP': 'Pretest1/Slide6.jpg',
-            'SWV_CP': 'Pretest1/Slide7.jpg',
-            'SWV_SP': 'Pretest1/Slide5.jpg',
-            'SWV_CP_culprit': 'Pretest1/Slide7.jpg',
-            'SWV_SP_culprit': 'Pretest1/Slide5.jpg'
+            'CWV_CP': 'Pretest1/Slide4.JPG',
+            'CWV_SP': 'Pretest1/Slide6.JPG',
+            'SWV_CP': 'Pretest1/Slide7.JPG',
+            'SWV_SP': 'Pretest1/Slide5.JPG',
+            'SWV_CP_culprit': 'Pretest1/Slide7.JPG',
+            'SWV_SP_culprit': 'Pretest1/Slide5.JPG'
         }
         return {
             'picture_wv': pictures_wv.get(player.task),
@@ -347,20 +347,20 @@ class Q5P(Page):
     def vars_for_template(player):
         # Map treatment groups to the right picture
         pictures_wv = {
-            'CWV_CP': 'Pretest1/Slide1.jpg',
-            'CWV_SP': 'Pretest1/Slide1.jpg',
-            'SWV_CP': 'Pretest1/Slide2.jpg',
-            'SWV_SP': 'Pretest1/Slide2.jpg',
-            'SWV_CP_culprit': 'Pretest1/Slide3.jpg',
-            'SWV_SP_culprit': 'Pretest1/Slide3.jpg'
+            'CWV_CP': 'Pretest1/Slide1.JPG',
+            'CWV_SP': 'Pretest1/Slide1.JPG',
+            'SWV_CP': 'Pretest1/Slide2.JPG',
+            'SWV_SP': 'Pretest1/Slide2.JPG',
+            'SWV_CP_culprit': 'Pretest1/Slide3.JPG',
+            'SWV_SP_culprit': 'Pretest1/Slide3.JPG'
         }
         pictures_p = {
-            'CWV_CP': 'Pretest1/Slide4.jpg',
-            'CWV_SP': 'Pretest1/Slide6.jpg',
-            'SWV_CP': 'Pretest1/Slide7.jpg',
-            'SWV_SP': 'Pretest1/Slide5.jpg',
-            'SWV_CP_culprit': 'Pretest1/Slide7.jpg',
-            'SWV_SP_culprit': 'Pretest1/Slide5.jpg'
+            'CWV_CP': 'Pretest1/Slide4.JPG',
+            'CWV_SP': 'Pretest1/Slide6.JPG',
+            'SWV_CP': 'Pretest1/Slide7.JPG',
+            'SWV_SP': 'Pretest1/Slide5.JPG',
+            'SWV_CP_culprit': 'Pretest1/Slide7.JPG',
+            'SWV_SP_culprit': 'Pretest1/Slide5.JPG'
         }
         return {
             'picture_wv': pictures_wv.get(player.task),
