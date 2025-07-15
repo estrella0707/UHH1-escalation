@@ -5,8 +5,8 @@ Contributing to the DFG project "Big Structural Change - Mass Immigration". <br>
 
 ## App names
 Pilot1: The improved streamlined code for the pretest of Study 1&2. Redundant pages are removed; instead, conditional display of treatment pictures are implemented in one single page for both World View and Policy.<br>
-Pilot2: Simplicity and escalation/polarization.
-Pilot3: The interaction between simplicity and the presence of a solution.
+Pilot2: Simplicity and escalation/polarization.<br>
+Pilot3: The interaction between simplicity and the presence of a solution.<br>
 
 ## Experiment times
 Pilot1: For original Study 1&2, 10 Jun 2025.<br>
