@@ -4,7 +4,7 @@ Chapter 1 for a cumulative doctoral dissertation. <br>
 Contributing to the DFG project "Big Structural Change - Mass Immigration". <br>
 
 ## App names
-Pilot1: The improved streamlined code for the pretest of Study 1&2. Redundant pages are removed; instead, conditional display of treatment pictures are implemented in one single page for both World View and Policy.<br>
+Pilot1: Study 1 (baseline) and Study 2 (moderation of culprit) in the original design. The code is improved and streamlined by removing redundant pages; instead, conditional display of treatment pictures are implemented in one single page for both World View and Policy.<br>
 Pilot2: Simplicity and escalation/polarization.<br>
 Pilot3: The interaction between simplicity and the presence of a solution.<br>
 
