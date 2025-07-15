@@ -1,0 +1,47 @@
+{{ block title }}
+Background Information
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous">
+{{ endblock }}
+
+{{ block content }}
+<form method="post">
+<p>
+    You are a citizen of Planet X, a technologically advanced world that has flourished for generations. The planet has long relied on stable agricultural systems to ensure food security and economic prosperity. <br>
+<br>
+    The planet possesses advanced robotics technology capable of adapting to various applications. However, the last major technological breakthrough occurred 20 years ago, and the robotics lack the ability to learn new tasks autonomously. They have also begun researching and experimenting with artificial micro-particles in the air, which are called technological mist, for various applications, but the technology is still in its early stages and has not yet been scaled up. In addition, Planet X maintains a moderate level of cooperation with its neighbors, including tourism and trade agreements. However, no interplanetary political unions or coordinating committees have been established.<br>
+<br>
+    Recently, two issues have emerged that are dividing public opinion on Planet X. Farmers have reported increasing <b>soil acidity</b>, causing reduced crop yields. At the same time, they complain that some <b>alien creatures</b> have appeared across farmland regions. These creatures were <b>unintentionally transported by automated spaceships</b> that frequently travel between Planet X and Planet Y.<br>
+<br>
+    The government considers these events part of a <b>natural cycle</b>. Officials argue that the soil will stabilize on its own and that these alien creatures will eventually integrate into the planet’s ecosystem or disappear over time. To address temporary food shortages, the government proposes <b>importing food from other planets and compensate the farmers</b>.<br>
+<br>
+    However, some people believe otherwise. They have gathered support to propose a <b>policy initiative for the upcoming referendum</b>. If this initiative reaches a simple majority in the referendum, it will always be implemented.<br>
+<br>
+    You will now explore their perspectives on the crisis and their proposed policy before deciding whether to support or oppose it.<br>
+</p>
+    <button class="btn btn-primary" style="display: none" id="next-button">Read the Initiative Leaflet</button>
+    <input type="hidden" name="reading_time_bg" id="id_response_time" value="">
+</form>
+
+{{ endblock }}
+
+{{ block scripts }}
+    <script>
+        // Record the time when the page loads
+        var startTime = new Date().getTime();
+
+        // After 30 seconds, display the "Next" button
+        setTimeout(function() {
+        document.getElementById('next-button').style.display = 'block';
+        }, 30 * 1000);
+
+        // When the "Next" button is clicked, calculate the elapsed time
+        document.getElementById('next-button').addEventListener('click', function() {
+        var endTime = new Date().getTime();
+        var responseTime = (endTime - startTime) / 1000; // response time in seconds
+        document.getElementById('id_response_time').value = responseTime;
+    });
+    </script>
+{{ endblock }}
