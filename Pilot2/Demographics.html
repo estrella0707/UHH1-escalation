@@ -32,6 +32,7 @@ Please answer the following questions.
     </div>
     <span class="end-label">Far Left</span>
 </div>
+{{ formfield_errors 'stand' }}
 <br>
 
 {{ formfield player.party}}
@@ -53,7 +54,7 @@ Please indicate how you agree with the following statements. <br>
     </div>
     <span class="end-label">Strongly agree</span>
 </div>
-
+{{ formfield_errors 'populism1' }}
 <b>Politicians should lead rather than follow the people.</b>
 <div class="likert-line">
     <span class="question-label"></span>
@@ -66,6 +67,7 @@ Please indicate how you agree with the following statements. <br>
     </div>
     <span class="end-label">Strongly agree</span>
 </div>
+{{ formfield_errors 'populism2' }}
 <br>
 
 {{ formfield player.source}}
