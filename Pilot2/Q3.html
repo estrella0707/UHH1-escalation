@@ -20,20 +20,28 @@
 <p><b>How do you think about the "Our Argument" section presented one the previous page? </b></p>
 {% if show_first_table_first %}
     {% include "Pilot2/mq1.html" %}
+    {{ formfield_errors 'mq1' }}
     {% include "Pilot2/mq2.html" %}
+    {{ formfield_errors 'mq2' }}
 {% else %}
     {% include "Pilot2/mq2.html" %}
+    {{ formfield_errors 'mq2' }}
     {% include "Pilot2/mq1.html" %}
+    {{ formfield_errors 'mq1' }}
 {% endif %}
 <br><br>
 
 <p><b>How do you think about the "Our Proposal" section presented one the previous page? </b></p>
 {% if show_first_table_first %}
     {% include "Pilot2/mq4.html" %}
+    {{ formfield_errors 'mq4' }}
     {% include "Pilot2/mq5.html" %}
+    {{ formfield_errors 'mq5' }}
 {% else %}
     {% include "Pilot2/mq5.html" %}
+    {{ formfield_errors 'mq5' }}
     {% include "Pilot2/mq4.html" %}
+    {{ formfield_errors 'mq4' }}
 {% endif %}
 <br>
 
@@ -42,16 +50,15 @@
 <div class="likert-line">
     <span class="question-label"><b>Do you think it is the fault of the alien creatures or not?</b></span>
     <span class="end-label">Not at all</span>
-
     <div class="likert-scale">
         {% for i in "1234567" %}
         <input type="radio" name="mq3" id="cul{{ i }}" value="{{ i }}">
         <label for="cul{{ i }}"></label>
         {% endfor %}
     </div>
-
     <span class="end-label">Very much so</span>
 </div>
+{{ formfield_errors 'mq3' }}
 
 {{ next_button }}
 

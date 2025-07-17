@@ -62,6 +62,7 @@ Make your policy vote!
             <img src="{{ static 'Pilot2/Slide1.JPG' }}" alt="Switch">
         </label>
     </div>
+{{ formfield_errors 'vote1' }}
 
 <br>
 {% load static %}
@@ -77,6 +78,7 @@ Make your policy vote!
     </div>
     <span class="end-label">Very confident</span>
 </div>
+{{ formfield_errors 'confidence1' }}
 <br>
 
 {{ next_button }}

@@ -7,6 +7,8 @@ Please answer the following questions.
 {{ endblock }}
 
 {{ block content }}
+{% load static %}
+<link rel="stylesheet" href="{% static 'likert.css' %}">
 
 <form method="post">
 {{ formfield player.age}}
@@ -18,18 +20,30 @@ Please answer the following questions.
 {{ formfield player.education}}
 <br>
 
-{{ formfield player.stand}}
+<b>Where would you place yourself politically?</b>
+<div class="likert-line">
+    <span class="question-label"></span>
+    <span class="end-label">Far Right</span>
+    <div class="likert-scale">
+        {% for i in "1234567" %}
+        <input type="radio" name="stand" id="stand{{ i }}" value="{{ i }}">
+        <label for="stand{{ i }}"></label>
+        {% endfor %}
+    </div>
+    <span class="end-label">Far Left</span>
+</div>
 <br>
 
 {{ formfield player.party}}
 <div id="party_other">
     {{ formfield player.party_other }}
 </div>
+<br>
 
-{% load static %}
-<link rel="stylesheet" href="{% static 'likert.css' %}">
+Please indicate how you agree with the following statements. <br>
+<b>The people, not politicians, should make our most important policy decisions.</b>
 <div class="likert-line">
-    <span class="question-label"><b>The people, not politicians, should make our most important policy decisions.</b></span>
+    <span class="question-label"></span>
     <span class="end-label">Strongly disagree</span>
     <div class="likert-scale">
         {% for i in "1234567" %}
@@ -40,8 +54,9 @@ Please answer the following questions.
     <span class="end-label">Strongly agree</span>
 </div>
 
+<b>Politicians should lead rather than follow the people.</b>
 <div class="likert-line">
-    <span class="question-label"><b>Politicians should lead rather than follow the people.</b></span>
+    <span class="question-label"></span>
     <span class="end-label">Strongly disagree</span>
     <div class="likert-scale">
         {% for i in "1234567" %}
@@ -51,6 +66,7 @@ Please answer the following questions.
     </div>
     <span class="end-label">Strongly agree</span>
 </div>
+<br>
 
 {{ formfield player.source}}
 <div id="source_other">

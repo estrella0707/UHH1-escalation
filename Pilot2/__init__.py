@@ -128,12 +128,7 @@ class Player(BasePlayer):
         choices=['No formal education', 'Primary school', 'Secondary school',
                  'University', 'Postgraduate', 'Prefer not to say']
     )
-    stand = models.StringField(
-        widget=widgets.RadioSelect,
-        label='On a scale of 1 to 7, where would you place yourself politically?',
-        choices=['1 (Far Left)', '2 (Left)', '3 (Center-Left)', '4 (Central)',
-                 '5 (Center-Right)', '6 (Right)', '7 (Far Right)']
-    )
+    stand = models.IntegerField(choices=range(1, 8))
     party = models.StringField(
         widget=widgets.RadioSelect,
         label='Which political party do you most closely identify with or support?',

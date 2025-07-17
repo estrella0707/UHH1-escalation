@@ -21,9 +21,11 @@
     </div>
     <span class="end-label">Very much</span>
 </div>
+{{ formfield_errors 'eq' }}
 
 <b>Did you associate the problem with any real-life problems, parties or policies?</b>
 {{ form.associate }}
+{{ formfield_errors 'associate' }}
 <br>
 <b>If Yes: Please describe, in one phrase or one sentence, the problems, parties or policies that came into your mind.</b>
 {{ form.associate_des }}
