@@ -9,12 +9,16 @@ Pilot 3 Solution"""
 # Function
 def creating_session(subsession):
     #Treatment randomization
-    initial = itertools.cycle(['clsl',  # Complex Long-term, Simple Long-term
-                               'csss',  # Complex Short-term, Simple Short-term
-                               'clss',  # Complex Long-term, Simple Short-term
-                               'cssl'])  # Complex Short-term, Simple Long-term
+    task = itertools.cycle(['complex_long_simple_long',
+                            'complex_long_simple_short',
+                            'complex_short_simple_long',
+                            'complex_short_simple_short'])
     for player in subsession.get_players():
-        player.initial = next(initial)
+        player.task = next(task)
+    # image position randomization
+    for player in subsession.get_players():
+        player.show_first_image_first = random.choice([True, False])
+
 
 def cq_bg_choices(player):
     # Shuffle choices at the first time loading the page
@@ -27,28 +31,11 @@ def cq_bg_choices(player):
         player.participant.vars['cq_bg_choices'] = choices
     return player.participant.vars['cq_bg_choices']
 
-def cq_wv_choices(player):
-    # Shuffle choices at the first time loading the page
-    if 'cq_wv_choices' not in player.participant.vars:
-        choices = ['A rise in solar radiation which affects atmospheric chemistry.',
-                   'The acidic waste produced by alien creatures.',
-                   'A newly introduced agricultural method.',
-                   'The inaction of the government.']
-        random.shuffle(choices)
-        player.participant.vars['cq_wv_choices'] = choices
-    return player.participant.vars['cq_wv_choices']
 
 def cq_bg_error_message(player, value):
     if value != 'The soil is becoming too acidic, and alien creatures have appeared.':
         return "This is not the correct answer. Please read and select again."
 
-def cq_wv_error_message(player, value):
-    if player.initial == 'complex':
-        if value != "A rise in solar radiation which affects atmospheric chemistry.":
-            return "This is not the correct answer. Please read and select again."
-    if player.initial == 'simple':
-        if value != "The acidic waste produced by alien creatures.":
-            return "This is not the correct answer. Please read and select again."
 
 # PARAMETERS
 class C(BaseConstants):
@@ -64,61 +51,46 @@ class Subsession(BaseSubsession):
 class Group(BaseGroup):
     pass
 
+
 class Player(BasePlayer):
     # Treatment assignment
-    initial = models.StringField()
+    task = models.StringField()
+    show_first_image_first = models.BooleanField()  # randomize left/right position
 
     # Comprehension check question
     cq_bg = models.StringField(
         label='What changes are farmers facing on Planet X, according to the information you just read?',
         widget=widgets.RadioSelect,
     )
-    cq_wv = models.StringField(
-        label='According to the initiative leaflet, what is causing soil acidification on Planet X?',
-        widget=widgets.RadioSelect,
-    )
 
-# Manipulation check question
-    mq1 = models.IntegerField(choices=range(1, 8))
-    mq2 = models.IntegerField(choices=range(1, 8))
-    mq3 = models.IntegerField(choices=range(1, 8))
-    mq4 = models.IntegerField(choices=range(1, 8))
+    # Manipulation check question
+    mq1_logic = models.IntegerField(choices=range(1, 8))
+    mq1_language = models.IntegerField(choices=range(1, 8))
+    mq1_time = models.IntegerField(choices=range(1, 8))
+    mq2_logic = models.IntegerField(choices=range(1, 8))
+    mq2_language = models.IntegerField(choices=range(1, 8))
+    mq2_time = models.IntegerField(choices=range(1, 8))
 
-# Engagement check question
+    # Engagement check question
     eq = models.IntegerField(choices=range(1, 8))
 
-# Pretest intention check question
+    # Pretest intention check question
     associate = models.BooleanField()
     associate_des = models.LongStringField(blank=True)
     associate_inf = models.BooleanField(blank=True)
 
- # Choice
-    vote_clsl = models.StringField(
+    # Choice
+    vote = models.StringField(
         widget=widgets.RadioSelect,
-        choices=['cl', 'sl'],
+        choices=['complex_long',
+                 'simple_long',
+                 'complex_short',
+                 'simple_short'],
         initial=''
     )
-    confidence_clsl = models.IntegerField(choices=range(1, 8))
-    vote_csss = models.StringField(
-        widget=widgets.RadioSelect,
-        choices=['cs', 'ss'],
-        initial=''
-    )
-    confidence_csss = models.IntegerField(choices=range(1, 8))
-    vote_clss = models.StringField(
-        widget=widgets.RadioSelect,
-        choices=['cl', 'ss'],
-        initial=''
-    )
-    confidence_clss = models.IntegerField(choices=range(1, 8))
-    vote_cssl = models.StringField(
-        widget=widgets.RadioSelect,
-        choices=['cs', 'sl'],
-        initial=''
-    )
-    confidence_cssl = models.IntegerField(choices=range(1, 8))
+    confidence = models.IntegerField(choices=range(1, 8))
 
-# Demographic variables
+    # Demographic variables
     age = models.IntegerField(
         label='Enter your age. (Please leave this blank if you prefer not to say.)',
         blank=True
@@ -186,40 +158,60 @@ class Q1(Page):
     form_fields = ['cq_bg']
 
 
-class CLSL(Page):
+class Q2(Page):
     @staticmethod
-    def is_displayed(player: Player):
-        return player.initial == 'clsl'
+    def vars_for_template(player):
+        # Map treatments to images and their values
+        image1_map = {
+            'complex_long_simple_long': ('Pilot3/Slide2.JPG', 'complex_long'),
+            'complex_long_simple_short': ('Pilot3/Slide2.JPG', 'complex_long'),
+            'complex_short_simple_long': ('Pilot3/Slide1.JPG', 'complex_short'),
+            'complex_short_simple_short': ('Pilot3/Slide1.JPG', 'complex_short'),
+        }
+        image2_map = {
+            'complex_long_simple_long': ('Pilot3/Slide4.JPG', 'simple_long'),
+            'complex_long_simple_short': ('Pilot3/Slide3.JPG', 'simple_short'),
+            'complex_short_simple_long': ('Pilot3/Slide4.JPG', 'simple_long'),
+            'complex_short_simple_short': ('Pilot3/Slide3.JPG', 'simple_short'),
+        }
+        image1_path, image1_value = image1_map.get(player.task, ('', ''))
+        image2_path, image2_value = image2_map.get(player.task, ('', ''))
+        return {
+            'image1': image1_path,
+            'image1_value': image1_value,
+            'image2': image2_path,
+            'image2_value': image2_value,
+        }
 
     form_model = 'player'
-    form_fields = ['vote_clsl', 'confidence_clsl']
+    form_fields = ['vote', 'confidence']
 
 
-class CSSS(Page):
+class Q3(Page):
     @staticmethod
-    def is_displayed(player: Player):
-        return player.initial == 'csss'
+    def vars_for_template(player):
+        # Map treatments to images and their values
+        image1 = {
+            'complex_long_simple_long': 'Pilot3/Slide2.JPG',
+            'complex_long_simple_short': 'Pilot3/Slide2.JPG',
+            'complex_short_simple_long': 'Pilot3/Slide1.JPG',
+            'complex_short_simple_short': 'Pilot3/Slide1.JPG',
+        }
+        image2 = {
+            'complex_long_simple_long': 'Pilot3/Slide4.JPG',
+            'complex_long_simple_short': 'Pilot3/Slide3.JPG',
+            'complex_short_simple_long': 'Pilot3/Slide4.JPG',
+            'complex_short_simple_short': 'Pilot3/Slide3.JPG',
+        }
+        return {
+            'image1': image1.get(player.task),
+            'image2': image2.get(player.task),
+            'show_first_table_first': random.choice([True, False]),
+        }
 
     form_model = 'player'
-    form_fields = ['vote_csss', 'confidence_csss']
-
-
-class CLSS(Page):
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.initial == 'clss'
-
-    form_model = 'player'
-    form_fields = ['vote_clss', 'confidence_clss']
-
-
-class CSSL(Page):
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.initial == 'cssl'
-
-    form_model = 'player'
-    form_fields = ['vote_cssl', 'confidence_cssl']
+    form_fields = ['mq1_logic', 'mq1_language', 'mq1_time',
+                   'mq2_logic', 'mq2_language', 'mq2_time']
 
 
 class Demographics(Page):
@@ -234,14 +226,13 @@ class Demographics(Page):
 class ProlificCompletion(Page):
     pass
 
+
 page_sequence = [
     Introduction,
     Background,
     Q1,
-    CLSL,
-    CSSS,
-    CLSS,
-    CSSL,
+    Q2,
+    Q3,
     Demographics,
     ProlificCompletion
 ]
