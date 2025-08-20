@@ -132,16 +132,6 @@ class Player(BasePlayer):
     )
     populism1 = models.IntegerField(choices=range(1, 8))
     populism2 = models.IntegerField(choices=range(1, 8))
-    source = models.StringField(
-        widget=widgets.RadioSelect,
-        label='Where do you primarily get your political news?',
-        choices=['Social media', 'Traditional media (e.g., BBC, Fox, CNN)',
-                 'Newspapers / magazines', 'Other (please describe if you wish)']
-    )
-    source_other = models.StringField(
-        label="Please describe if you wish",
-        blank=True,
-    )
 
 
 # PAGES
@@ -219,8 +209,7 @@ class Demographics(Page):
     form_fields = ['age', 'gender', 'education', 'stand',
                    'party', 'party_other',
                    'intuition1', 'intuition2', 'intuition3',
-                   'populism1', 'populism2',
-                   'source', 'source_other']
+                   'populism1', 'populism2']
 
 
 class ProlificCompletion(Page):
