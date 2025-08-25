@@ -47,6 +47,13 @@ def cq_wv_error_message(player, value):
         if value != "The acidic waste produced by alien creatures.":
             return "This is not the correct answer. Please read and select again."
 
+def likert1(label):
+    return models.IntegerField(
+        initial=0,
+        choices=[[1, ''], [2, ''], [3, ''], [4, ''], [5, ''], [6, ''], [7, '']],
+        label=label,
+        widget=widgets.RadioSelect)
+
 
 # PARAMETERS
 class C(BaseConstants):
@@ -139,21 +146,32 @@ class Player(BasePlayer):
         label="Please describe if you wish",
         blank=True,
     )
+    # Individual difference variables
     intuition1 = models.IntegerField(
         label='A bat and a ball together cost $110. The bat costs $100 more than the ball. '
-              'How much does the ball cost? (Please enter an integer only)',
+              'How much does the ball cost?',
     )
     intuition2 = models.IntegerField(
         label='If it takes 5 machines 5 minutes to make 5 widgets, how long would it take 100 '
-              'machines to make 100 widgets? (Please enter an integer only)',
+              'machines to make 100 widgets?',
     )
     intuition3 = models.IntegerField(
         label='In a lake, there is a patch of lily pads. Every day, the patch doubles in size. '
               'If it takes 48 days for the patch to cover the entire lake, how many days will '
-              'it take for the patch to cover half of the lake? (Please enter an integer only)',
+              'it take for the patch to cover half of the lake?',
     )
-    populism1 = models.IntegerField(choices=range(1, 8))
-    populism2 = models.IntegerField(choices=range(1, 8))
+    patience = models.IntegerField(choices=range(1, 8))
+    scientist = models.IntegerField(choices=range(1, 8))
+    religiosity = models.IntegerField(choices=range(1, 8))
+    frustration1 = likert1('If my first attempt to solve a problem fails, I keep trying until I succeed.')
+    frustration2 = likert1('I am willing to listen and consider alternatives for handling a problem.')
+    ethic_new = likert1('It is important to try new and different things in life.')
+    ethic_nature = likert1('It is important to care for nature and environment.')
+    ethic_secure = likert1('It is important to live in secure and safe surroundings.')
+    ethic_creative = likert1('It is important to think new ideas and being creative.')
+    ethic_equality = likert1('It is important that people are treated equally and have equal opportunities.')
+    ethic_help = likert1('It is important to help people and care for others well-being.')
+    scifi = likert1('I enjoy reading science-fiction novels.')
 
 
 # PAGES
@@ -294,12 +312,25 @@ class Q4(Page):
     form_fields = ['eq', 'associate', 'associate_des', 'associate_inf']
 
 
-class Demographics(Page):
+class Demographics1(Page):
     form_model = 'player'
     form_fields = ['age', 'gender', 'education', 'stand',
                    'party', 'party_other',
                    'intuition1', 'intuition2', 'intuition3',
-                   'populism1', 'populism2']
+                   'patience', 'scientist', 'religiosity']
+
+
+class Demographics2(Page):
+    form_model = 'player'
+
+    @staticmethod
+    def get_form_fields(player: Player):
+        import random
+        survey = ['frustration1', 'frustration2',
+                   'ethic_new', 'ethic_nature', 'ethic_secure',
+                   'ethic_creative', 'ethic_equality', 'ethic_help', 'scifi']
+        random.shuffle(survey)
+        return survey
 
 
 class ProlificCompletion(Page):
@@ -318,6 +349,7 @@ page_sequence = [
     C2, S2, R2,
     C3, S3, R3,
     Q4,
-    Demographics,
+    Demographics1,
+    Demographics2,
     ProlificCompletion
 ]
