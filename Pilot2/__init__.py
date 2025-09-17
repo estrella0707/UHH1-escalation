@@ -168,7 +168,7 @@ class Player(BasePlayer):
     ethic_new = likert1('It is important to try new and different things in life.')
     ethic_nature = likert1('It is important to care for nature and environment.')
     ethic_secure = likert1('It is important to live in secure and safe surroundings.')
-    ethic_creative = likert1('It is important to think new ideas and being creative.')
+    ethic_creative = likert1('It is important to think of new ideas and be creative.')
     ethic_equality = likert1('It is important that people are treated equally and have equal opportunities.')
     ethic_help = likert1('It is important to help people and care for others well-being.')
     scifi = likert1('I enjoy reading science-fiction novels.')
@@ -347,7 +347,7 @@ page_sequence = [
     R0,
     C1, S1, R1,
     C2, S2, R2,
-    C3, S3, R3,
+    C3, S3,
     Q4,
     Demographics1,
     Demographics2,
