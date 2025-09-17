@@ -10,8 +10,8 @@
 
 {% load static %}
 <link rel="stylesheet" href="{% static 'likert.css' %}">
+<b>How much do you feel you are a member of this world?</b>
 <div class="likert-line">
-    <span class="question-label"><b>How much do you feel you are a member of this world?</b></span>
     <span class="end-label">Very much not</span>
     <div class="likert-scale">
         {% for i in "1234567" %}
@@ -35,5 +35,6 @@
 <br>
 
 {{ next_button }}
+
 
 {{ endblock }}
