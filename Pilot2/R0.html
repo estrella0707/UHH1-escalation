@@ -3,13 +3,14 @@
       rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous">
+Now imagine three months have passed...
 {{ endblock }}
 
 {{ block content }}
 {% if player.initial == 'complex' %}
-    <p>Now imagine three months have passed. The situation has <b>not improved</b>. Soil acidification continues. The number of Tivarns remains high. Meanwhile, solar radiation slightly reduces but remains problematic. The robotic fleet experiences unexpected performance issues, limiting the mist’s effectiveness.</p>
+    <p>The situation has <b>not improved</b>. Soil acidification continues. The number of Tivarns remains high. Meanwhile, solar radiation slightly reduces but remains problematic. The robotic fleet experiences unexpected performance issues, limiting the mist’s effectiveness.</p>
 {% elif player.initial == 'simple' %}
-    <p>Now imagine three months have passed. The situation has <b>not improved</b>. Soil acidification continues. Solar radiation remains high. Meanwhile, some Tivarns still managed to reach planet X by hiding deep within cargo ships or by entering a dormant state.</p>
+    <p>The situation has <b>not improved</b>. Soil acidification continues. Solar radiation remains high. Meanwhile, some Tivarns still managed to reach planet X by hiding deep within cargo ships or by entering a dormant state.</p>
 {% endif %}
 {{ next_button }}
 {{ endblock }}

@@ -11,10 +11,17 @@ Make your policy vote!
        role="button" aria-expanded="false" aria-controls="bg">
     Review the Background Information
 </a>
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#vote"
+       role="button" aria-expanded="false" aria-controls="vote">
+    Review the previous policy
+</a>
 <div class="collapse" id="bg">
     <div class="card card-body">
     {% include "Pilot2/BG.html" %}
     </div>
+</div>
+<div class="collapse" id="vote">
+    <img src="{{ static 'Pilot2/Slide2.JPG' }}" alt="Complex Stick" style="max-width: 50%; height: auto; display: block;" class="mx-auto">
 </div>
 <br><br>
 

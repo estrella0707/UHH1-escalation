@@ -3,13 +3,18 @@
       rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous">
+Your chosen policy has been implemented!
 {{ endblock }}
 
 {{ block content }}
-{% if player.initial == 'complex' %}
-    <p>(show the box) Imagine three months have passed.(new page) The situation has <b>greatly improved</b>. The number of Tivarns is decreasing slowly but steadily. Soil acidification is significantly reduced but persists marginally. Solar radiation is effectively neutralized, with rare minor fluctuations. Maintenance complexity and occasional system overload limit full resolution.</p>
-{% elif player.initial == 'simple' %}
-    <p>(show the box) Imagine three months have passed.(new page) The situation has <b>greatly improved</b>. Soil acidification is significantly reduces but persists marginally. Meanwhile, the Tivarns are almost entirely removed from the Planet X; a few exceptions are under close control.</p>
+{% if player.initial == 'complex' and player.vote3 == 'stick' %}
+    <img src="{{ static 'Pilot2/Slide4.JPG' }}" alt="Complex Stick" style="max-width: 50%; height: auto; display: block;" class="mx-auto">
+{% elif player.initial == 'simple' and player.vote3 == 'stick' %}
+    <img src="{{ static 'Pilot2/Slide9.JPG' }}" alt="Simple Stick" style="max-width: 50%; height: auto; display: block;" class="mx-auto">
+{% elif player.initial == 'complex' and player.vote3 == 'switch' %}
+    <img src="{{ static 'Pilot2/Slide5.JPG' }}" alt="Complex Switch" style="max-width: 50%; height: auto; display: block;" class="mx-auto">
+{% elif player.initial == 'simple' and player.vote3 == 'switch' %}
+    <img src="{{ static 'Pilot2/Slide10.JPG' }}" alt="Simple Switch" style="max-width: 50%; height: auto; display: block;" class="mx-auto">
 {% endif %}
 {{ next_button }}
 {{ endblock }}

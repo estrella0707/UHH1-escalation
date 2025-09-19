@@ -209,7 +209,7 @@ class Q2(Page):
         # Map treatment groups to the right picture
         pictures = {
             'complex': 'Pilot2/Slide1.JPG',
-            'simple': 'Pilot2/Slide5.JPG',
+            'simple': 'Pilot2/Slide6.JPG',
         }
         return {
             'picture': pictures.get(player.initial)
@@ -225,7 +225,7 @@ class Q3(Page):
         # Map treatment groups to the right picture
         pictures = {
             'complex': 'Pilot2/Slide1.JPG',
-            'simple': 'Pilot2/Slide5.JPG',
+            'simple': 'Pilot2/Slide6.JPG',
         }
         return {
             'picture': pictures.get(player.initial),
@@ -255,11 +255,14 @@ class S1(Page):
         return player.initial == 'simple'
 
 
-class R1(Page):
+class R1a(Page):
+    pass
+
+
+class R1b(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.vote1 == 'stick'
-
 
 class C2(Page):
     form_model = 'player'
@@ -279,7 +282,11 @@ class S2(Page):
         return player.initial == 'simple' and player.vote1 == 'stick'
 
 
-class R2(Page):
+class R2a(Page):
+    pass
+
+
+class R2b(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.vote2 == 'stick'
@@ -345,9 +352,9 @@ page_sequence = [
     Q2,
     Q3,
     R0,
-    C1, S1, R1,
-    C2, S2, R2,
-    C3, S3,
+    C1, S1, R1a, R1b,
+    C2, S2, R2a, R2b,
+    C3, S3, R3,
     Q4,
     Demographics1,
     Demographics2,
