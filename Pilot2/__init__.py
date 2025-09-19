@@ -283,8 +283,9 @@ class S2(Page):
 
 
 class R2a(Page):
-    pass
-
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.vote2 == 'stick'
 
 class R2b(Page):
     @staticmethod
@@ -311,7 +312,9 @@ class S3(Page):
 
 
 class R3(Page):
-    pass
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.vote2 == 'stick'
 
 
 class Q4(Page):
