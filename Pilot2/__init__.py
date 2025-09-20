@@ -234,7 +234,7 @@ class Q3(Page):
 
 
 class R0(Page):
-    form_model = 'player'
+    pass
 
 
 class C1(Page):
@@ -264,6 +264,7 @@ class R1b(Page):
     def is_displayed(player: Player):
         return player.vote1 == 'stick'
 
+
 class C2(Page):
     form_model = 'player'
     form_fields = ['vote2', 'confidence2']
@@ -285,7 +286,8 @@ class S2(Page):
 class R2a(Page):
     @staticmethod
     def is_displayed(player: Player):
-        return player.vote2 == 'stick'
+        return player.vote1 == 'stick'
+
 
 class R2b(Page):
     @staticmethod
