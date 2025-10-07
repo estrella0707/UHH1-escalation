@@ -121,8 +121,7 @@ class Player(BasePlayer):
 
     # Demographic variables
     age = models.IntegerField(
-        label='Enter your age. (Please leave this blank if you prefer not to say.)',
-        blank=True
+        label='Enter your age'
     )
     gender = models.StringField(
         widget=widgets.RadioSelect,
