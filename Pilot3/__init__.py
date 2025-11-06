@@ -18,6 +18,9 @@ def creating_session(subsession):
     # image position randomization
     for player in subsession.get_players():
         player.show_first_image_first = random.choice([True, False])
+    # question order randomization
+    for player in subsession.get_players():
+        player.first_logic_then_language = random.choice([True, False])
 
 
 def cq_bg_choices(player):
@@ -64,6 +67,7 @@ class Player(BasePlayer):
     # Treatment assignment
     task = models.StringField()
     show_first_image_first = models.BooleanField()  # randomize left/right position
+    first_logic_then_language = models.BooleanField()  # randomize the order of questions
 
     # Comprehension check question
     cq_bg = models.StringField(
@@ -124,6 +128,23 @@ class Player(BasePlayer):
         label="Please describe if you wish",
         blank=True,
     )
+    immi_attitude = models.IntegerField(
+        widget=widgets.RadioSelect,
+        label='Which of the following statements most closely reflect your view on the number of <b>legal immigrants</b> '
+              'who are permitted to come to the United Kingdom to live?',
+        choices=[(1, 'The number of legal immigrants today is a very big problem. '
+                     'We should ask many legal immigrants to leave the UK, '
+                     'and stop accepting new immigrants.'),
+                 (2, 'The number of legal immigrants today is a big problem. '
+                     'We should decrease by a lot the number permitted to come to the UK. '),
+                 (3, 'The number of legal immigrants today is somewhat of a problem. '
+                     'We should try and decrease by a bit the number permitted to come to the UK. '),
+                 (4, 'The number of legal immigrants today is not a problem. '
+                     'We should keep letting in the same number of immigrants to come to the UK. '),
+                 (5, 'The number of legal immigrants today is not a problem at all. '
+                     'We should let even more legal immigrants come to the UK. ')
+                 ],
+    )
     # Individual difference variables
     intuition1 = models.IntegerField(
         label='A bat and a ball together cost $110. The bat costs $100 more than the ball. '
@@ -141,8 +162,6 @@ class Player(BasePlayer):
     patience = models.IntegerField(choices=range(1, 8))
     scientist = models.IntegerField(choices=range(1, 8))
     religiosity = models.IntegerField(choices=range(1, 8))
-    frustration1 = likert1('If my first attempt to solve a problem fails, I keep trying until I succeed.')
-    frustration2 = likert1('I am willing to listen and consider alternatives for handling a problem.')
     ethic_new = likert1('It is important to try new and different things in life.')
     ethic_nature = likert1('It is important to care for nature and environment.')
     ethic_secure = likert1('It is important to live in secure and safe surroundings.')
@@ -214,7 +233,6 @@ class Q3(Page):
         return {
             'image1': image1.get(player.task),
             'image2': image2.get(player.task),
-            'show_first_table_first': random.choice([True, False]),
         }
 
     form_model = 'player'
@@ -222,10 +240,15 @@ class Q3(Page):
                    'mq2_logic', 'mq2_language', 'mq2_time']
 
 
+class Q4(Page):
+    form_model = 'player'
+    form_fields = ['eq', 'associate', 'associate_des', 'associate_inf']
+
+
 class Demographics1(Page):
     form_model = 'player'
     form_fields = ['age', 'gender', 'education', 'stand',
-                   'party', 'party_other',
+                   'party', 'party_other', 'immi_attitude',
                    'intuition1', 'intuition2', 'intuition3',
                    'patience', 'scientist', 'religiosity']
 
@@ -236,9 +259,8 @@ class Demographics2(Page):
     @staticmethod
     def get_form_fields(player: Player):
         import random
-        survey = ['frustration1', 'frustration2',
-                   'ethic_new', 'ethic_nature', 'ethic_secure',
-                   'ethic_creative', 'ethic_equality', 'ethic_help', 'scifi']
+        survey = ['ethic_new', 'ethic_nature', 'ethic_secure',
+                  'ethic_creative', 'ethic_equality', 'ethic_help', 'scifi']
         random.shuffle(survey)
         return survey
 
@@ -253,6 +275,7 @@ page_sequence = [
     Q1,
     Q2,
     Q3,
+    Q4,
     Demographics1,
     Demographics2,
     ProlificCompletion
