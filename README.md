@@ -5,19 +5,20 @@ Contributing to the DFG project "Big Structural Change - Mass Immigration". <br>
 
 ## App names
 Pilot1: Study 1 (baseline) and Study 2 (moderation of culprit) in the original design. The code is improved and streamlined by removing redundant pages; instead, conditional display of treatment pictures are implemented in one single page for both World View and Policy.<br>
-Pilot2: Simplicity and escalation/polarization.<br>
+Pilot2EX: Simplicity and escalation/polarization, exogenous assignment of policy.<br>
+Pilot2EN: Simplicity and escalation/polarization, endogenous choice of policy.<br>
 Pilot3: The interaction between simplicity and the presence of a solution.<br>
 
 ## Experiment times
-Pilot1: For original Study 1&2, 10 Jun 2025.<br>
-Pilot2: <br>
-Pilot3: <br>
-Main experiment for Study 1: <br>
-Main experiment for Study 2: <br>
-Pretest1 for Study 3: <br>
-Pretest2 for Study 3: <br>
-Main experiment for Study 3: <br>
-Pretest1 for Study 4: <br>
-Pretest2 for Study 4: <br>
-Main experiment for Study 4: <br>
+Pilot1: 10 Jun 2025.<br>
+Pilot2: [1] 15 Oct 2025.<br>
+Pilot3: [1] 21 Oct 2025.<br>
+: <br>
+: <br>
+: <br>
+: <br>
+: <br>
+: <br>
+: <br>
+: <br>
 
