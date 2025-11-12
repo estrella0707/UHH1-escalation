@@ -1,0 +1,19 @@
+{{ block title }}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous">
+Now imagine three months have passed...
+{{ endblock }}
+
+{{ block content }}
+{% if player.initial == 'complex' %}
+    <p>An evaluation of the policy leads some people to claim that its outcome may not have reached expectation. Soil acidification continues. The number of Tivarns remains high. Meanwhile, solar radiation remains problematic. Mirror alignment becomes periodically unstable due to unanticipated solar storms, temporarily decreasing effectiveness.</p>
+{% elif player.initial == 'simple' %}
+    <p>An evaluation of the policy leads some people to claim that its outcome may not have reached expectation. Soil acidification continues. Solar radiation remains high. Meanwhile, the existing Tivarns on Planet X now face less competition. They have greater access to resources, consume more, and reproduce at faster rates.</p>
+{% endif %}
+
+<p>This could be due to that either (a) the argument regarding why these problems emerged is incorrect, so we are in the incorrect direction; or (2) the argument is correct, so we are in the correct direction, just that the policy is not effective enough. </p>
+
+{{ next_button }}
+{{ endblock }}
