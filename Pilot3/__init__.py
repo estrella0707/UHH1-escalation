@@ -15,12 +15,10 @@ def creating_session(subsession):
                             'complex_short_simple_short'])
     for player in subsession.get_players():
         player.task = next(task)
-    # image position randomization
+    # Order randomization
     for player in subsession.get_players():
-        player.show_first_image_first = random.choice([True, False])
-    # question order randomization
-    for player in subsession.get_players():
-        player.first_logic_then_language = random.choice([True, False])
+        player.complex_left_simple_right = random.choice([True, False]) # image position randomization
+        player.first_logic_then_language = random.choice([True, False]) # question order randomization
 
 
 def cq_bg_choices(player):
@@ -66,7 +64,7 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     # Treatment assignment
     task = models.StringField()
-    show_first_image_first = models.BooleanField()  # randomize left/right position
+    complex_left_simple_right = models.BooleanField()  # randomize left/right position
     first_logic_then_language = models.BooleanField()  # randomize the order of questions
 
     # Comprehension check question
@@ -76,12 +74,12 @@ class Player(BasePlayer):
     )
 
     # Manipulation check question
-    mq1_logic = models.IntegerField(choices=range(1, 8))
-    mq1_language = models.IntegerField(choices=range(1, 8))
-    mq1_time = models.IntegerField(choices=range(1, 8))
-    mq2_logic = models.IntegerField(choices=range(1, 8))
-    mq2_language = models.IntegerField(choices=range(1, 8))
-    mq2_time = models.IntegerField(choices=range(1, 8))
+    complex_logic = models.IntegerField(choices=range(1, 8))
+    complex_language = models.IntegerField(choices=range(1, 8))
+    complex_time = models.IntegerField(choices=range(1, 8))
+    simple_logic = models.IntegerField(choices=range(1, 8))
+    simple_language = models.IntegerField(choices=range(1, 8))
+    simple_time = models.IntegerField(choices=range(1, 8))
 
     # Engagement check question
     eq = models.IntegerField(choices=range(1, 8))
@@ -236,8 +234,8 @@ class Q3(Page):
         }
 
     form_model = 'player'
-    form_fields = ['mq1_logic', 'mq1_language', 'mq1_time',
-                   'mq2_logic', 'mq2_language', 'mq2_time']
+    form_fields = ['complex_logic', 'complex_language', 'complex_time',
+                   'simple_logic', 'simple_language', 'simple_time']
 
 
 class Q4(Page):

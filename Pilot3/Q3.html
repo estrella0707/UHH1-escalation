@@ -8,32 +8,32 @@
 {{ block content }}
 <p>Based on the information you just read, please answer the following questions.</p>
 
-{% if player.show_first_image_first %}
+{% if player.complex_left_simple_right %}
 <div class="container mt-4">
   <div class="row">
     <div class="col-md-6">
       <img src="{{ static image1 }}" class="img-fluid mb-3" style="max-width: 100%;">
-      {% if first_logic_then_language %}
-        {% include "Pilot3/mq1_logic.html" %}
-        {% include "Pilot3/mq1_language.html" %}
-        {% include "Pilot3/mq1_time.html" %}
+      {% if player.first_logic_then_language %}
+        {% include "Pilot3/complex_logic.html" %}
+        {% include "Pilot3/complex_language.html" %}
+        {% include "Pilot3/complex_time.html" %}
       {% else %}
-        {% include "Pilot3/mq1_language.html" %}
-        {% include "Pilot3/mq1_logic.html" %}
-        {% include "Pilot3/mq1_time.html" %}
+        {% include "Pilot3/complex_language.html" %}
+        {% include "Pilot3/complex_logic.html" %}
+        {% include "Pilot3/complex_time.html" %}
       {% endif %}
     </div>
 
     <div class="col-md-6">
       <img src="{{ static image2 }}" class="img-fluid mb-3" style="max-width: 100%;">
-      {% if first_logic_then_language %}
-        {% include "Pilot3/mq2_logic.html" %}
-        {% include "Pilot3/mq2_language.html" %}
-        {% include "Pilot3/mq2_time.html" %}
+      {% if player.first_logic_then_language %}
+        {% include "Pilot3/simple_logic.html" %}
+        {% include "Pilot3/simple_language.html" %}
+        {% include "Pilot3/simple_time.html" %}
       {% else %}
-        {% include "Pilot3/mq2_language.html" %}
-        {% include "Pilot3/mq2_logic.html" %}
-        {% include "Pilot3/mq2_time.html" %}
+        {% include "Pilot3/simple_language.html" %}
+        {% include "Pilot3/simple_logic.html" %}
+        {% include "Pilot3/simple_time.html" %}
       {% endif %}
     </div>
   </div>
@@ -43,27 +43,27 @@
   <div class="row">
     <div class="col-md-6">
       <img src="{{ static image2 }}" class="img-fluid mb-3" style="max-width: 100%;">
-      {% if first_logic_then_language %}
-        {% include "Pilot3/mq2_logic.html" %}
-        {% include "Pilot3/mq2_language.html" %}
-        {% include "Pilot3/mq2_time.html" %}
+      {% if player.first_logic_then_language %}
+        {% include "Pilot3/simple_logic.html" %}
+        {% include "Pilot3/simple_language.html" %}
+        {% include "Pilot3/simple_time.html" %}
       {% else %}
-        {% include "Pilot3/mq2_language.html" %}
-        {% include "Pilot3/mq2_logic.html" %}
-        {% include "Pilot3/mq2_time.html" %}
+        {% include "Pilot3/simple_language.html" %}
+        {% include "Pilot3/simple_logic.html" %}
+        {% include "Pilot3/simple_time.html" %}
       {% endif %}
     </div>
 
     <div class="col-md-6">
       <img src="{{ static image1 }}" class="img-fluid mb-3" style="max-width: 100%;">
-      {% if first_logic_then_language %}
-        {% include "Pilot3/mq1_logic.html" %}
-        {% include "Pilot3/mq1_language.html" %}
-        {% include "Pilot3/mq1_time.html" %}
+      {% if player.first_logic_then_language %}
+        {% include "Pilot3/complex_logic.html" %}
+        {% include "Pilot3/complex_language.html" %}
+        {% include "Pilot3/complex_time.html" %}
       {% else %}
-        {% include "Pilot3/mq1_language.html" %}
-        {% include "Pilot3/mq1_logic.html" %}
-        {% include "Pilot3/mq1_time.html" %}
+        {% include "Pilot3/complex_language.html" %}
+        {% include "Pilot3/complex_logic.html" %}
+        {% include "Pilot3/complex_time.html" %}
       {% endif %}
     </div>
   </div>
