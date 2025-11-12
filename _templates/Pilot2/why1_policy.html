@@ -1,0 +1,17 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'likert.css' %}">
+
+<div class="likert-line">
+    <span class="question-label"><b>I lose faith in the previous policy.</b></span>
+    <span class="end-label">Strongly disagree</span>
+
+    <div class="likert-scale">
+        {% for i in "1234567" %}
+        <input type="radio" name="why1_policy" id="why1_policy{{ i }}" value="{{ i }}">
+        <label for="why1_policy{{ i }}"></label>
+        {% endfor %}
+    </div>
+
+    <span class="end-label">Strongly agree</span>
+</div>
+{{ formfield_errors 'why1_policy' }}
