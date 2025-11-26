@@ -18,7 +18,7 @@
 <p>Based on the information you just read, please answer the following questions.</p>
 
 <p><b>How do you think about the "Our Argument" section presented one the previous page? </b></p>
-{% if first_logic_then_language %}
+{% if player.first_logic_then_language %}
     {% include "Pilot2/mq_argument_logic.html" %}
     {% include "Pilot2/mq_argument_language.html" %}
 {% else %}
@@ -28,7 +28,7 @@
 <br><br>
 
 <p><b>How do you think about the "Our Implemented Policy" section presented one the previous page? </b></p>
-{% if first_logic_then_language %}
+{% if player.first_logic_then_language %}
     {% include "Pilot2/mq_policy_logic.html" %}
     {% include "Pilot2/mq_policy_language.html" %}
 {% else %}
