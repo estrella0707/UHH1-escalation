@@ -143,7 +143,7 @@ class Player(BasePlayer):
     )
     immi_attitude = models.IntegerField(
         widget=widgets.RadioSelect,
-        label='Which of the following statements most closely reflect your view on the number of legal immigrants '
+        label='Which of the following statements most closely reflect your view on the number of <b>legal immigrants</b> '
               'who are permitted to come to the United Kingdom to live?',
         choices=[(1, 'The number of legal immigrants today is a very big problem. '
                      'We should ask many legal immigrants to leave the UK, '

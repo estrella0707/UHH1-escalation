@@ -11,13 +11,13 @@ Please answer the following questions.
 <link rel="stylesheet" href="{% static 'likert.css' %}">
 
 <form method="post">
-{{ formfield player.age}}
+{{ formfield player.age }}
 <br>
 
-{{ formfield player.gender}}
+{{ formfield player.gender }}
 <br>
 
-{{ formfield player.education}}
+{{ formfield player.education }}
 <br>
 
 Where would you place yourself politically?
@@ -35,7 +35,7 @@ Where would you place yourself politically?
 {{ formfield_errors 'stand' }}
 <br>
 
-{{ formfield player.party}}
+{{ formfield player.party }}
 <div id="party_other">
     {{ formfield player.party_other }}
 </div>
@@ -84,6 +84,9 @@ Regardless of whether you belong to a particular religion, how religious would y
     <span class="end-label">Very much so</span>
 </div>
 {{ formfield_errors 'religiosity' }}
+<br>
+
+{{ formfield player.immi_attitude }}
 <br>
 
 <b>Please answer the following three questions using integers only.</b>

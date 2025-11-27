@@ -98,7 +98,8 @@ class Player(BasePlayer):
                  'simple_short'],
         initial=''
     )
-    confidence = models.IntegerField(choices=range(1, 8))
+    complex_confidence = models.IntegerField(choices=range(1, 8))
+    simple_confidence = models.IntegerField(choices=range(1, 8))
 
     # Demographic variables
     age = models.IntegerField(
@@ -209,7 +210,7 @@ class Q2(Page):
         }
 
     form_model = 'player'
-    form_fields = ['vote', 'confidence']
+    form_fields = ['vote']
 
 
 class Q3(Page):
@@ -234,8 +235,8 @@ class Q3(Page):
         }
 
     form_model = 'player'
-    form_fields = ['complex_logic', 'complex_language', 'complex_time',
-                   'simple_logic', 'simple_language', 'simple_time']
+    form_fields = ['complex_logic', 'complex_language', 'complex_time', 'complex_confidence',
+                   'simple_logic', 'simple_language', 'simple_time', 'simple_confidence']
 
 
 class Q4(Page):
