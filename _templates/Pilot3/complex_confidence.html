@@ -1,0 +1,17 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'likert.css' %}">
+
+<b>How confident are you that this policy will work?</b>
+<div class="likert-line">
+    <span class="question-label"></span>
+    <span class="end-label">Very unconfident</span>
+    <div class="likert-scale">
+        {% for i in "1234567" %}
+        <input type="radio" name="complex_confidence" id="complex_confidence{{ i }}" value="{{ i }}">
+        <label for="complex_confidence{{ i }}"></label>
+        {% endfor %}
+    </div>
+    <span class="end-label">Very confident</span>
+</div>
+{{ formfield_errors 'complex_confidence' }}
+<br>
