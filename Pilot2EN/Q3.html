@@ -6,7 +6,7 @@
 {{ endblock }}
 
 {{ block content }}
-<p>Based on the information you just read, please answer the following questions.</p>
+<p>Based on the two leaflets you just read, please answer the following questions.</p>
 
 {% if player.complex_left_simple_right %}
 <div class="container mt-4">
@@ -17,10 +17,14 @@
         {% include "Pilot2EN/complex_logic.html" %}
         {% include "Pilot2EN/complex_language.html" %}
         {% include "Pilot2EN/complex_fault.html" %}
+        {% include "Pilot2EN/confidence0_complex_argument.html" %}
+        {% include "Pilot2EN/confidence0_complex_policy.html" %}
       {% else %}
         {% include "Pilot2EN/complex_language.html" %}
         {% include "Pilot2EN/complex_logic.html" %}
         {% include "Pilot2EN/complex_fault.html" %}
+        {% include "Pilot2EN/confidence0_complex_argument.html" %}
+        {% include "Pilot2EN/confidence0_complex_policy.html" %}
       {% endif %}
     </div>
 
@@ -30,10 +34,14 @@
         {% include "Pilot2EN/simple_logic.html" %}
         {% include "Pilot2EN/simple_language.html" %}
         {% include "Pilot2EN/simple_fault.html" %}
+        {% include "Pilot2EN/confidence0_simple_argument.html" %}
+        {% include "Pilot2EN/confidence0_simple_policy.html" %}
       {% else %}
         {% include "Pilot2EN/simple_language.html" %}
         {% include "Pilot2EN/simple_logic.html" %}
         {% include "Pilot2EN/simple_fault.html" %}
+        {% include "Pilot2EN/confidence0_simple_argument.html" %}
+        {% include "Pilot2EN/confidence0_simple_policy.html" %}
       {% endif %}
     </div>
   </div>
@@ -47,10 +55,14 @@
         {% include "Pilot2EN/simple_logic.html" %}
         {% include "Pilot2EN/simple_language.html" %}
         {% include "Pilot2EN/simple_fault.html" %}
+        {% include "Pilot2EN/confidence0_simple_argument.html" %}
+        {% include "Pilot2EN/confidence0_simple_policy.html" %}
       {% else %}
         {% include "Pilot2EN/simple_language.html" %}
         {% include "Pilot2EN/simple_logic.html" %}
         {% include "Pilot2EN/simple_fault.html" %}
+        {% include "Pilot2EN/confidence0_simple_argument.html" %}
+        {% include "Pilot2EN/confidence0_simple_policy.html" %}
       {% endif %}
     </div>
 
@@ -60,10 +72,14 @@
         {% include "Pilot2EN/complex_logic.html" %}
         {% include "Pilot2EN/complex_language.html" %}
         {% include "Pilot2EN/complex_fault.html" %}
+        {% include "Pilot2EN/confidence0_complex_argument.html" %}
+        {% include "Pilot2EN/confidence0_complex_policy.html" %}
       {% else %}
         {% include "Pilot2EN/complex_language.html" %}
         {% include "Pilot2EN/complex_logic.html" %}
         {% include "Pilot2EN/complex_fault.html" %}
+        {% include "Pilot2EN/confidence0_complex_argument.html" %}
+        {% include "Pilot2EN/confidence0_complex_policy.html" %}
       {% endif %}
     </div>
   </div>

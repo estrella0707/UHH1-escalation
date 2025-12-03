@@ -77,34 +77,6 @@ Which policy would you support? <b>Please indicate your choice by clicking the c
 {{ formfield_errors 'vote0' }}
 
 <br>
-{% load static %}
-<link rel="stylesheet" href="{% static 'likert.css' %}">
-<div class="likert-line">
-    <span class="question-label"><b>How confident are you that this argument correctly captures the truth?</b></span>
-    <span class="end-label">Very unconfident</span>
-    <div class="likert-scale">
-        {% for i in "1234567" %}
-        <input type="radio" name="confidence0_argument" id="confidence0_argument{{ i }}" value="{{ i }}">
-        <label for="confidence0_argument{{ i }}"></label>
-        {% endfor %}
-    </div>
-    <span class="end-label">Very confident</span>
-</div>
-{{ formfield_errors 'confidence0_argument' }}
-
-<div class="likert-line">
-    <span class="question-label"><b>How confident are you that this policy will work?</b></span>
-    <span class="end-label">Very unconfident</span>
-    <div class="likert-scale">
-        {% for i in "1234567" %}
-        <input type="radio" name="confidence0_policy" id="confidence0_policy{{ i }}" value="{{ i }}">
-        <label for="confidence0_policy{{ i }}"></label>
-        {% endfor %}
-    </div>
-    <span class="end-label">Very confident</span>
-</div>
-{{ formfield_errors 'confidence0_policy' }}
-<br>
 
 {{ next_button }}
 {{ endblock }}

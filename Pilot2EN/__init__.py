@@ -85,8 +85,10 @@ class Player(BasePlayer):
         choices=['complex', 'simple'],
         initial=''
     )
-    confidence0_argument = models.IntegerField(choices=range(1, 8))
-    confidence0_policy = models.IntegerField(choices=range(1, 8))
+    confidence0_complex_argument = models.IntegerField(choices=range(1, 8))
+    confidence0_complex_policy = models.IntegerField(choices=range(1, 8))
+    confidence0_simple_argument = models.IntegerField(choices=range(1, 8))
+    confidence0_simple_policy = models.IntegerField(choices=range(1, 8))
 
     vote1 = models.StringField(
         widget=widgets.RadioSelect,
@@ -96,6 +98,10 @@ class Player(BasePlayer):
     confidence1 = models.IntegerField(choices=range(1, 8))
     why1_argument = models.IntegerField(choices=range(1, 8))
     why1_policy = models.IntegerField(choices=range(1, 8))
+    why1 = models.LongStringField(
+        label="If you want to elaborate on the reason of your choice, please leave it here. (optional)",
+        blank=True
+    )
 
     vote2 = models.StringField(
         widget=widgets.RadioSelect,
@@ -105,6 +111,10 @@ class Player(BasePlayer):
     confidence2 = models.IntegerField(choices=range(1, 8))
     why2_argument = models.IntegerField(choices=range(1, 8))
     why2_policy = models.IntegerField(choices=range(1, 8))
+    why2 = models.LongStringField(
+        label="If you want to elaborate on the reason of your choice, please leave it here. (optional)",
+        blank=True
+    )
 
     vote3 = models.StringField(
         widget=widgets.RadioSelect,
@@ -114,6 +124,10 @@ class Player(BasePlayer):
     confidence3 = models.IntegerField(choices=range(1, 8))
     why3_argument = models.IntegerField(choices=range(1, 8))
     why3_policy = models.IntegerField(choices=range(1, 8))
+    why3 = models.LongStringField(
+        label="If you want to elaborate on the reason of your choice, please leave it here. (optional)",
+        blank=True
+    )
 
     # Demographic variables
     age = models.IntegerField(
@@ -202,13 +216,15 @@ class Q1(Page):
 
 class Q2(Page):
     form_model = 'player'
-    form_fields = ['vote0', 'confidence0_argument', 'confidence0_policy']
+    form_fields = ['vote0']
 
 
 class Q3(Page):
     form_model = 'player'
     form_fields = ['complex_logic', 'complex_language', 'complex_fault',
-                   'simple_logic', 'simple_language', 'simple_fault']
+                   'confidence0_complex_argument', 'confidence0_complex_policy',
+                   'simple_logic', 'simple_language', 'simple_fault',
+                   'confidence0_simple_argument', 'confidence0_simple_policy']
 
 
 # R0a, R1a, R2a, R3a: display the chosen policy in this round of voting
@@ -219,6 +235,10 @@ class R0a(Page):
 
 
 class R0c(Page):
+    pass
+
+
+class R0d(Page):
     pass
 
 
@@ -250,10 +270,16 @@ class R1b(Page):
         return player.vote1 == 'switch'
 
     form_model = 'player'
-    form_fields = ['why1_argument', 'why1_policy']
+    form_fields = ['why1_argument', 'why1_policy', 'why1']
 
 
 class R1c(Page):
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.vote1 == 'stick'
+
+
+class R1d(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.vote1 == 'stick'
@@ -289,10 +315,16 @@ class R2b(Page):
         return player.vote2 == 'switch'
 
     form_model = 'player'
-    form_fields = ['why2_argument', 'why2_policy']
+    form_fields = ['why2_argument', 'why2_policy', 'why2']
 
 
 class R2c(Page):
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.vote2 == 'stick'
+
+
+class R2d(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.vote2 == 'stick'
@@ -313,7 +345,7 @@ class S3(Page):
         return player.vote0 == 'simple' and player.vote2 == 'stick'
 
     form_model = 'player'
-    form_fields = ['vote3', 'confidence3']
+    form_fields = ['vote3', 'confidence3', 'why3']
 
 
 class R3a(Page):
@@ -367,9 +399,9 @@ page_sequence = [
     Q1,
     Q2,
     Q3,
-    R0a, R0c,
-    C1, S1, R1a, R1b, R1c,
-    C2, S2, R2a, R2b, R2c,
+    R0a, R0c, R0d,
+    C1, S1, R1a, R1b, R1c, R1d,
+    C2, S2, R2a, R2b, R2c, R2d,
     C3, S3, R3a, R3b,
     Q4,
     Demographics1,
