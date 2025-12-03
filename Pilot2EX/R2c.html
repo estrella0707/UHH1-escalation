@@ -8,12 +8,20 @@ Now imagine three months have passed...
 
 {{ block content }}
 {% if player.initial == 'complex' %}
-    <p>An evaluation of the policy leads some people to claim that its outcome may not have reached expectation. Soil acidification continues. The number of Tivarns remains high. Meanwhile, solar radiation remains problematic. Mirror alignment becomes periodically unstable due to unanticipated solar storms, temporarily decreasing effectiveness.</p>
+    <p>An evaluation of the policy leads some people to claim that its outcome may not have reached expectation. Soil acidification continues. The number of Tivarns remains high. Meanwhile, solar radiation slightly reduces again, but still remains problematic.</p>
 {% elif player.initial == 'simple' %}
-    <p>An evaluation of the policy leads some people to claim that its outcome may not have reached expectation. Soil acidification continues. Solar radiation remains high. Meanwhile, the existing Tivarns on Planet X now face less competition. They have greater access to resources, consume more, and reproduce at faster rates.</p>
+    <p>An evaluation of the policy leads some people to claim that its outcome may not have reached expectation. Soil acidification continues. Solar radiation remains high. Meanwhile, the number of Tivarns slightly reduces again, but still remains problematic.</p>
 {% endif %}
 
-<p>This could be due to that either (a) the argument regarding why these problems emerged is incorrect, so we are in the incorrect direction; or (2) the argument is correct, so we are in the correct direction, just that the policy is not effective enough. </p>
+{% if player.first_argument_then_policy %}
+<p>This could be due to one of the two reasons:<br>
+    - the argument regarding why these problems emerged is incorrect; or <br>
+    - the argument is correct, but the policy is ineffective. </p>
+{% else %}
+<p>This could be due to one of the two reasons:<br>
+    - the argument regarding why these problems emerged is correct, but the policy is ineffective; or <br>
+    - the argument is incorrect. </p>
+{% endif %}
 
 {{ next_button }}
 {{ endblock }}

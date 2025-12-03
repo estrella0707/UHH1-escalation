@@ -21,7 +21,7 @@ def cq_bg_choices(player):
     # Shuffle choices at the first time loading the page
     if 'cq_bg_choices' not in player.participant.vars:
         choices = ['Too much rain is flooding their fields.',
-                   'The soil is becoming too acidic, and alien creatures have appeared.',
+                   'The soil is becoming too acidic, and creatures from other planet have appeared.',
                    'Robots are taking over farming jobs.',
                    'Crops are growing too fast and causing food waste.']
         random.shuffle(choices)
@@ -32,7 +32,7 @@ def cq_wv_choices(player):
     # Shuffle choices at the first time loading the page
     if 'cq_wv_choices' not in player.participant.vars:
         choices = ['A rise in solar radiation which affects atmospheric chemistry.',
-                   'The acidic waste produced by alien creatures.',
+                   'The acidic waste produced by creatures from other planet.',
                    'A newly introduced agricultural method.',
                    'The inaction of the government.']
         random.shuffle(choices)
@@ -40,7 +40,7 @@ def cq_wv_choices(player):
     return player.participant.vars['cq_wv_choices']
 
 def cq_bg_error_message(player, value):
-    if value != 'The soil is becoming too acidic, and alien creatures have appeared.':
+    if value != 'The soil is becoming too acidic, and creatures from other planet have appeared.':
         return "This is not the correct answer. Please read and select again."
 
 def cq_wv_error_message(player, value):
@@ -48,7 +48,7 @@ def cq_wv_error_message(player, value):
         if value != "A rise in solar radiation which affects atmospheric chemistry.":
             return "This is not the correct answer. Please read and select again."
     if player.initial == 'simple':
-        if value != "The acidic waste produced by alien creatures.":
+        if value != "The acidic waste produced by creatures from other planet.":
             return "This is not the correct answer. Please read and select again."
 
 def likert1(label):
@@ -117,6 +117,10 @@ class Player(BasePlayer):
     confidence1 = models.IntegerField(choices=range(1, 8))
     why1_argument = models.IntegerField(choices=range(1, 8))
     why1_policy = models.IntegerField(choices=range(1, 8))
+    why1 = models.LongStringField(
+        label="If you want to elaborate on the reason of your choice, please leave it here. (optional)",
+        blank=True
+    )
 
     vote2 = models.StringField(
         widget=widgets.RadioSelect,
@@ -126,6 +130,10 @@ class Player(BasePlayer):
     confidence2 = models.IntegerField(choices=range(1, 8))
     why2_argument = models.IntegerField(choices=range(1, 8))
     why2_policy = models.IntegerField(choices=range(1, 8))
+    why2 = models.LongStringField(
+        label="If you want to elaborate on the reason of your choice, please leave it here. (optional)",
+        blank=True
+    )
 
     vote3 = models.StringField(
         widget=widgets.RadioSelect,
@@ -135,6 +143,10 @@ class Player(BasePlayer):
     confidence3 = models.IntegerField(choices=range(1, 8))
     why3_argument = models.IntegerField(choices=range(1, 8))
     why3_policy = models.IntegerField(choices=range(1, 8))
+    why3 = models.LongStringField(
+        label="If you want to elaborate on the reason of your choice, please leave it here. (optional)",
+        blank=True
+    )
 
     # Demographic variables
     age = models.IntegerField(
@@ -270,7 +282,12 @@ class Q3(Page):
 # R1a, R2a, R3a: display the chosen policy in this round of voting
 # R1b, R2b, R3b: if participants switch, ask why they switch
 # R0c, R1c, R2c: display that the policy fails
+# R0d, R1d, R2d: supporters and opponents explain why the policy fails
 class R0c(Page):
+    pass
+
+
+class R0d(Page):
     pass
 
 
@@ -302,10 +319,16 @@ class R1b(Page):
         return player.vote1 == 'switch'
 
     form_model = 'player'
-    form_fields = ['why1_argument', 'why1_policy']
+    form_fields = ['why1_argument', 'why1_policy', 'why1']
 
 
 class R1c(Page):
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.vote1 == 'stick'
+
+
+class R1d(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.vote1 == 'stick'
@@ -341,10 +364,16 @@ class R2b(Page):
         return player.vote2 == 'switch'
 
     form_model = 'player'
-    form_fields = ['why2_argument', 'why2_policy']
+    form_fields = ['why2_argument', 'why2_policy', 'why2']
 
 
 class R2c(Page):
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.vote2 == 'stick'
+
+
+class R2d(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.vote2 == 'stick'
@@ -380,7 +409,7 @@ class R3b(Page):
         return player.vote3 == 'switch'
 
     form_model = 'player'
-    form_fields = ['why3_argument', 'why3_policy']
+    form_fields = ['why3_argument', 'why3_policy', 'why3']
 
 
 class Q4(Page):
@@ -420,9 +449,9 @@ page_sequence = [
     C0, S0,
     Q2,
     Q3,
-    R0c,
-    C1, S1, R1a, R1b, R1c,
-    C2, S2, R2a, R2b, R2c,
+    R0c, R0d,
+    C1, S1, R1a, R1b, R1c, R1d,
+    C2, S2, R2a, R2b, R2c, R2d,
     C3, S3, R3a, R3b,
     Q4,
     Demographics1,
