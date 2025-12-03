@@ -17,7 +17,7 @@ def cq_bg_choices(player):
     # Shuffle choices at the first time loading the page
     if 'cq_bg_choices' not in player.participant.vars:
         choices = ['Too much rain is flooding their fields.',
-                   'The soil is becoming too acidic, and alien creatures have appeared.',
+                   'The soil is becoming too acidic, and creatures from other planet have appeared.',
                    'Robots are taking over farming jobs.',
                    'Crops are growing too fast and causing food waste.']
         random.shuffle(choices)
@@ -25,7 +25,7 @@ def cq_bg_choices(player):
     return player.participant.vars['cq_bg_choices']
 
 def cq_bg_error_message(player, value):
-    if value != 'The soil is becoming too acidic, and alien creatures have appeared.':
+    if value != 'The soil is becoming too acidic, and creatures from other planet have appeared.':
         return "This is not the correct answer. Please read and select again."
 
 def likert1(label):
@@ -409,4 +409,3 @@ page_sequence = [
     Demographics2,
     ProlificCompletion
 ]
-
