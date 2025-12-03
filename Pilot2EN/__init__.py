@@ -230,6 +230,7 @@ class Q3(Page):
 # R0a, R1a, R2a, R3a: display the chosen policy in this round of voting
 # R1b, R2b, R3b: if participants switch, ask why they switch
 # R0c, R1c, R2c: display that the policy fails
+# R0d, R1d, R2d: supporters and opponents explain why the policy fails
 class R0a(Page):
     pass
 
@@ -408,3 +409,4 @@ page_sequence = [
     Demographics2,
     ProlificCompletion
 ]
+
