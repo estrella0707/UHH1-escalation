@@ -75,6 +75,12 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    # Exclude bots
+    AIuse = models.BooleanField(
+        label='If you have used any AI tool in completing this study, please tick "Yes". '
+              'You will receive the study reward independent of your answer.'
+    )
+
     # Treatment assignment
     initial = models.StringField()
     first_logic_then_language = models.BooleanField()  # randomize the order of questions
@@ -91,11 +97,9 @@ class Player(BasePlayer):
     )
 
     # Manipulation check question
-    mq_argument_logic = models.IntegerField(choices=range(1, 8))
-    mq_argument_language = models.IntegerField(choices=range(1, 8))
-    mq_argument_fault = models.IntegerField(choices=range(1, 8))
-    mq_policy_logic = models.IntegerField(choices=range(1, 8))
-    mq_policy_language = models.IntegerField(choices=range(1, 8))
+    mq_logic = models.IntegerField(choices=range(1, 8))
+    mq_language = models.IntegerField(choices=range(1, 8))
+    mq_fault = models.IntegerField(choices=range(1, 8))
 
     # Engagement check question
     eq = models.IntegerField(choices=range(1, 8))
@@ -253,8 +257,8 @@ class Q2(Page):
     def vars_for_template(player):
         # Map treatment groups to the right picture
         pictures = {
-            'complex': 'Pilot2/Slide1.JPG',
-            'simple': 'Pilot2/Slide6.JPG',
+            'complex': 'Pilot2/complex_given.JPG',
+            'simple': 'Pilot2/simple_given.JPG',
         }
         return {
             'picture': pictures.get(player.initial)
@@ -263,16 +267,15 @@ class Q2(Page):
 
 class Q3(Page):
     form_model = 'player'
-    form_fields = ['mq_argument_logic', 'mq_argument_language', 'mq_argument_fault',
-                   'mq_policy_logic', 'mq_policy_language',
+    form_fields = ['mq_logic', 'mq_language', 'mq_fault',
                    'confidence0_argument', 'confidence0_policy']
 
     @staticmethod
     def vars_for_template(player):
         # Map treatment groups to the right picture
         pictures = {
-            'complex': 'Pilot2/Slide1.JPG',
-            'simple': 'Pilot2/Slide6.JPG',
+            'complex': 'Pilot2/complex_given.JPG',
+            'simple': 'Pilot2/simple_given.JPG',
         }
         return {
             'picture': pictures.get(player.initial)
@@ -422,7 +425,7 @@ class Demographics1(Page):
     form_fields = ['age', 'gender', 'education', 'stand',
                    'party', 'party_other', 'immi_attitude',
                    'intuition1', 'intuition2', 'intuition3',
-                   'patience', 'scientist', 'religiosity']
+                   'patience', 'scientist', 'religiosity', 'AIuse']
 
 
 class Demographics2(Page):

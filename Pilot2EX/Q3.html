@@ -17,46 +17,33 @@
 
 <p>Based on the leaflet you just read, please answer the following questions.</p>
 
-<p><b>How do you think about the "Our Argument" section presented one the previous page? </b></p>
 {% if player.first_logic_then_language %}
-    {% include "Pilot2/mq_argument_logic.html" %}
-    {% include "Pilot2/mq_argument_language.html" %}
+    {% include "Pilot2/mq_logic.html" %}
+    {% include "Pilot2/mq_language.html" %}
 {% else %}
-    {% include "Pilot2/mq_argument_language.html" %}
-    {% include "Pilot2/mq_argument_logic.html" %}
+    {% include "Pilot2/mq_language.html" %}
+    {% include "Pilot2/mq_logic.html" %}
 {% endif %}
-<br>
-
-<p><b>How do you think about the "Our Implemented Policy" section presented one the previous page? </b></p>
-{% if player.first_logic_then_language %}
-    {% include "Pilot2/mq_policy_logic.html" %}
-    {% include "Pilot2/mq_policy_language.html" %}
-{% else %}
-    {% include "Pilot2/mq_policy_language.html" %}
-    {% include "Pilot2/mq_policy_logic.html" %}
-{% endif %}
-<br>
 
 {% load static %}
 <link rel="stylesheet" href="{% static 'likert.css' %}">
-<b>Do you think it is the fault of the alien creatures or not?</b>
+<b>How much does the argument in the above leaflet imply that soil acidity is the fault of the Tivarns?</b>
 <div class="likert-line">
     <span class="end-label">Not at all</span>
     <div class="likert-scale">
         {% for i in "1234567" %}
-        <input type="radio" name="mq_argument_fault" id="mq_argument_fault{{ i }}" value="{{ i }}">
-        <label for="mq_argument_fault{{ i }}"></label>
+        <input type="radio" name="mq_fault" id="mq_fault{{ i }}" value="{{ i }}">
+        <label for="mq_fault{{ i }}"></label>
         {% endfor %}
     </div>
     <span class="end-label">Very much so</span>
-  </div>
 </div>
-{{ formfield_errors 'mq_argument_fault' }}
-<br>
+{{ formfield_errors 'mq_fault' }}
 
+<b>How confident are you that this argument correctly captures the truth?</b>
 <link rel="stylesheet" href="{% static 'likert.css' %}">
 <div class="likert-line">
-    <span class="question-label"><b>How confident are you that this argument correctly captures the truth?</b></span>
+    <span class="question-label"></span>
     <span class="end-label">Very unconfident</span>
     <div class="likert-scale">
         {% for i in "1234567" %}
@@ -67,10 +54,10 @@
     <span class="end-label">Very confident</span>
 </div>
 {{ formfield_errors 'confidence0_argument' }}
-<br>
 
+<b>How confident are you that this policy will work?</b>
 <div class="likert-line">
-    <span class="question-label"><b>How confident are you that this policy will work?</b></span>
+    <span class="question-label"></span>
     <span class="end-label">Very unconfident</span>
     <div class="likert-scale">
         {% for i in "1234567" %}
