@@ -52,6 +52,12 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    # Exclude bots
+    AIuse = models.BooleanField(
+        label='If you have used any AI tool in completing this study, please tick "Yes". '
+              'You will receive the study reward independent of your answer.'
+    )
+
     # Treatment assignment
     first_logic_then_language = models.BooleanField()  # randomize the order of questions
     first_argument_then_policy = models.BooleanField()  # randomize the order of questions
@@ -346,7 +352,7 @@ class S3(Page):
         return player.vote0 == 'simple' and player.vote2 == 'stick'
 
     form_model = 'player'
-    form_fields = ['vote3', 'confidence3', 'why3']
+    form_fields = ['vote3', 'confidence3']
 
 
 class R3a(Page):
@@ -361,7 +367,7 @@ class R3b(Page):
         return player.vote3 == 'switch'
 
     form_model = 'player'
-    form_fields = ['why3_argument', 'why3_policy']
+    form_fields = ['why3_argument', 'why3_policy', 'why3']
 
 
 class Q4(Page):
@@ -374,7 +380,7 @@ class Demographics1(Page):
     form_fields = ['age', 'gender', 'education', 'stand',
                    'party', 'party_other', 'immi_attitude',
                    'intuition1', 'intuition2', 'intuition3',
-                   'patience', 'scientist', 'religiosity']
+                   'patience', 'scientist', 'religiosity', 'AIuse']
 
 
 class Demographics2(Page):

@@ -13,7 +13,7 @@ Make your policy vote!
 </a>
 <a class="btn btn-primary" data-bs-toggle="collapse" href="#vote"
        role="button" aria-expanded="false" aria-controls="vote">
-    Review the previous policy
+    Review the leaflet with the policy you chose
 </a>
 <div class="collapse" id="bg">
     <div class="card card-body">
@@ -21,11 +21,11 @@ Make your policy vote!
     </div>
 </div>
 <div class="collapse" id="vote">
-    <img src="{{ static 'Pilot2/Slide10.JPG' }}" alt="Complex" style="max-width: 50%; height: auto; display: block;" class="mx-auto">
+    <img src="{{ static 'Pilot2/complex_vote0.JPG' }}" alt="Complex" style="max-width: 50%; height: auto; display: block;" class="mx-auto">
 </div>
 <br><br>
 
-<p>You will make up your mind which policy you support. <b>Please indicate your choice by clicking the corresponding image directly.</b></p>
+<p>You will make up your mind again which policy you support. <b style="color:red;">Please indicate your choice by clicking the corresponding image directly.</b></p>
 
     <style>
         .image-choice-container {
@@ -58,12 +58,14 @@ Make your policy vote!
     <div class="image-choice-container">
         <input type="radio" id="vote_stick" name="vote1" value="stick">
         <label for="vote_stick">
-            <img src="{{ static 'Pilot2/Slide2.JPG' }}" alt="Stick">
+            <b style="font-size: larger">Supporters of the previously chosen policy</b>
+            <img src="{{ static 'Pilot2/complex_vote1.JPG' }}" alt="Stick">
         </label>
 
         <input type="radio" id="vote_switch" name="vote1" value="switch">
         <label for="vote_switch">
-            <img src="{{ static 'Pilot2/Slide5.JPG' }}" alt="Switch">
+            <b style="font-size: larger">Opponents of the previously chosen policy</b>
+            <img src="{{ static 'Pilot2/simple_vote0.JPG' }}" alt="Switch">
         </label>
     </div>
 {{ formfield_errors 'vote1' }}

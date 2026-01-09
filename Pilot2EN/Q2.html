@@ -18,8 +18,8 @@ Make your policy vote!
 </div>
 <br><br>
 
-<p>The parliament is now debating on this issue, and you have a vote. Now you can see the two policies and corresponding argument side by side. <br>
-Which policy would you support? <b>Please indicate your choice by clicking the corresponding image directly.</b></p>
+<p>The parliament is now debating on this issue, and you have a vote. Now you can see the two policies and corresponding arguments side by side. <br>
+Which policy would you support? <b style="color:red;">Please indicate your choice by clicking the corresponding image directly.</b></p>
 
     <style>
         .image-choice-container {
@@ -53,24 +53,28 @@ Which policy would you support? <b>Please indicate your choice by clicking the c
     <div class="image-choice-container">
         <input type="radio" id="vote_complex" name="vote0" value='complex'>
         <label for="vote_complex">
-            <img src="{{ static 'Pilot2/Slide10.JPG' }}" alt="option1">
+            <b style="font-size: larger">Option 1</b>
+            <img src="{{ static 'Pilot2/complex_vote0.JPG' }}" alt="option1">
         </label>
 
         <input type="radio" id="vote_simple" name="vote0" value='simple'>
         <label for="vote_simple">
-            <img src="{{ static 'Pilot2/Slide5.JPG' }}" alt="option2">
+            <b style="font-size: larger">Option 2</b>
+            <img src="{{ static 'Pilot2/simple_vote0.JPG' }}" alt="option2">
         </label>
     </div>
 {% else %}
     <div class="image-choice-container">
         <input type="radio" id="vote_simple" name="vote0" value='simple'>
         <label for="vote_simple">
-            <img src="{{ static 'Pilot2/Slide5.JPG' }}" alt="option2">
+            <b style="font-size: larger">Option 1</b>
+            <img src="{{ static 'Pilot2/simple_vote0.JPG' }}" alt="option2">
         </label>
 
         <input type="radio" id="vote_complex" name="vote0" value='complex'>
         <label for="vote_complex">
-            <img src="{{ static 'Pilot2/Slide10.JPG' }}" alt="option1">
+            <b style="font-size: larger">Option 2</b>
+            <img src="{{ static 'Pilot2/complex_vote0.JPG' }}" alt="option1">
         </label>
     </div>
 {% endif %}
