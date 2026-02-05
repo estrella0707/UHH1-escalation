@@ -62,6 +62,12 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    # Exclude bots
+    AIuse = models.BooleanField(
+        label='If you have used any AI tool in completing this study, please tick "Yes". '
+              'You will receive the study reward independent of your answer.'
+    )
+    
     # Treatment assignment
     task = models.StringField()
     complex_left_simple_right = models.BooleanField()  # randomize left/right position
@@ -249,7 +255,7 @@ class Demographics1(Page):
     form_fields = ['age', 'gender', 'education', 'stand',
                    'party', 'party_other', 'immi_attitude',
                    'intuition1', 'intuition2', 'intuition3',
-                   'patience', 'scientist', 'religiosity']
+                   'patience', 'scientist', 'religiosity', 'AIuse']
 
 
 class Demographics2(Page):
