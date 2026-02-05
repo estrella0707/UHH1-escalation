@@ -181,18 +181,18 @@ class Player(BasePlayer):
     immi_attitude = models.IntegerField(
         widget=widgets.RadioSelect,
         label='Which of the following statements most closely reflect your view on the number of <b>legal immigrants</b> '
-              'who are permitted to come to the United Kingdom to live?',
+              'who are permitted to come to the United States to live?',
         choices=[(1, 'The number of legal immigrants today is a very big problem. '
-                     'We should ask many legal immigrants to leave the UK, '
+                     'We should ask many legal immigrants to leave the US, '
                      'and stop accepting new immigrants.'),
                  (2, 'The number of legal immigrants today is a big problem. '
-                     'We should decrease by a lot the number permitted to come to the UK. '),
+                     'We should decrease by a lot the number permitted to come to the US. '),
                  (3, 'The number of legal immigrants today is somewhat of a problem. '
-                     'We should try and decrease by a bit the number permitted to come to the UK. '),
+                     'We should try and decrease by a bit the number permitted to come to the US. '),
                  (4, 'The number of legal immigrants today is not a problem. '
-                     'We should keep letting in the same number of immigrants to come to the UK. '),
+                     'We should keep letting in the same number of immigrants to come to the US. '),
                  (5, 'The number of legal immigrants today is not a problem at all. '
-                     'We should let even more legal immigrants come to the UK. ')
+                     'We should let even more legal immigrants come to the US. ')
                  ],
     )
     # Individual difference variables
@@ -461,3 +461,4 @@ page_sequence = [
     Demographics2,
     ProlificCompletion
 ]
+
