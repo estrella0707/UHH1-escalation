@@ -14,6 +14,23 @@ def creating_session(subsession):
         player.first_argument_then_policy = random.choice([True, False])
 
 
+def cq_bg_choices(player):
+    # Shuffle choices at the first time loading the page
+    if 'cq_bg_choices' not in player.participant.vars:
+        choices = ['Too much rain is flooding their fields.',
+                   'The soil is becoming too acidic, and creatures from other planet have appeared.',
+                   'Robots are taking over farming jobs.',
+                   'Crops are growing too fast and causing food waste.']
+        random.shuffle(choices)
+        player.participant.vars['cq_bg_choices'] = choices
+    return player.participant.vars['cq_bg_choices']
+
+
+def cq_bg_error_message(player, value):
+    if value != 'The soil is becoming too acidic, and creatures from other planet have appeared.':
+        return "This is not the correct answer. Please read and select again."
+
+
 # PARAMETERS
 class C(BaseConstants):
     NAME_IN_URL = 'en'
@@ -34,6 +51,12 @@ class Player(BasePlayer):
     first_logic_then_language = models.BooleanField()  # randomize the order of questions
     first_argument_then_policy = models.BooleanField()  # randomize the order of questions
     complex_left_simple_right = models.BooleanField()  # randomize left/right position
+
+    # Comprehension check question
+    cq_bg = models.StringField(
+        label='What changes are farmers facing on Planet X, according to the information you just read?',
+        widget=widgets.RadioSelect,
+    )
 
     # Manipulation check question
     complex_logic = models.IntegerField(choices=range(1, 8))
@@ -95,6 +118,15 @@ class Player(BasePlayer):
 
 
 # PAGES
+class Background(Page):
+    pass
+
+
+class Q1(Page):
+    form_model = 'player'
+    form_fields = ['cq_bg']
+
+
 class Instruction(Page):
     pass
 
@@ -102,6 +134,11 @@ class Instruction(Page):
 class Vote0(Page):
     form_model = 'player'
     form_fields = ['vote0']
+
+    @staticmethod
+    def app_after_this_page(player, upcoming_apps):
+        if player.vote0 == 'abstain':
+            return 'Survey'
 
 
 class Q2(Page):
@@ -142,6 +179,11 @@ class Vote1(Page):
         return {
             'picture': pictures.get(player.vote0)
         }
+
+    @staticmethod
+    def app_after_this_page(player, upcoming_apps):
+        if player.vote1 == 'abstain':
+            return 'Survey'
 
 
 class R1a(Page):
@@ -194,6 +236,11 @@ class Vote2(Page):
             'picture': pictures.get(player.vote0)
         }
 
+    @staticmethod
+    def app_after_this_page(player, upcoming_apps):
+        if player.vote2 == 'abstain':
+            return 'Survey'
+
 
 class R2a(Page):
     @staticmethod
@@ -245,6 +292,11 @@ class Vote3(Page):
             'picture': pictures.get(player.vote0)
         }
 
+    @staticmethod
+    def app_after_this_page(player, upcoming_apps):
+        if player.vote3 == 'abstain':
+            return 'Survey'
+
 
 class R3a(Page):
     @staticmethod
@@ -270,6 +322,7 @@ class R3b(Page):
 
 
 page_sequence = [
+    Background, Q1,
     Instruction, Vote0,
     Q2,
     R0a, R0c, R0d,
