@@ -46,7 +46,7 @@ class Player(BasePlayer):
 
     vote1 = models.StringField(
         widget=widgets.RadioSelect,
-        choices=['stick', 'switch'],
+        choices=['stick', 'switch', 'abstain'],
         initial=''
     )
     confidence1 = models.IntegerField(choices=range(1, 8))
@@ -59,7 +59,7 @@ class Player(BasePlayer):
 
     vote2 = models.StringField(
         widget=widgets.RadioSelect,
-        choices=['stick', 'switch'],
+        choices=['stick', 'switch', 'abstain'],
         initial=''
     )
     confidence2 = models.IntegerField(choices=range(1, 8))
@@ -72,7 +72,7 @@ class Player(BasePlayer):
 
     vote3 = models.StringField(
         widget=widgets.RadioSelect,
-        choices=['stick', 'switch'],
+        choices=['stick', 'switch', 'abstain'],
         initial=''
     )
     confidence3 = models.IntegerField(choices=range(1, 8))
@@ -90,8 +90,8 @@ class Given(Page):
     def vars_for_template(player):
         # Map treatment groups to the right picture
         pictures = {
-            'complex': 'Pilot2/complex_given.JPG',
-            'simple': 'Pilot2/simple_given.JPG',
+            'complex': 'complex/given.JPG',
+            'simple': 'simple_plant/given.JPG',
         }
         return {
             'picture': pictures.get(player.initial)
@@ -107,8 +107,8 @@ class Q2(Page):
     def vars_for_template(player):
         # Map treatment groups to the right picture
         pictures = {
-            'complex': 'Pilot2/complex_given.JPG',
-            'simple': 'Pilot2/simple_given.JPG',
+            'complex': 'complex/given.JPG',
+            'simple': 'simple_plant/given.JPG',
         }
         return {
             'picture': pictures.get(player.initial)
@@ -139,8 +139,8 @@ class Vote1(Page):
     def vars_for_template(player):
         # Map treatment groups to the right picture
         pictures = {
-            'complex': 'Pilot2/complex_given.JPG',
-            'simple': 'Pilot2/simple_given.JPG',
+            'complex': 'complex/given.JPG',
+            'simple': 'simple_plant/given.JPG',
         }
         return {
             'picture': pictures.get(player.initial)
@@ -148,7 +148,9 @@ class Vote1(Page):
 
 
 class R1a(Page):
-    pass
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.vote1 != 'abstain'
 
 
 class R1b(Page):
@@ -188,8 +190,8 @@ class Vote2(Page):
     def vars_for_template(player):
         # Map treatment groups to the right picture
         pictures = {
-            'complex': 'Pilot2/complex_vote1.JPG',
-            'simple': 'Pilot2/simple_vote1.JPG',
+            'complex': 'complex/vote1.JPG',
+            'simple': 'simple_plant/vote1.JPG',
         }
         return {
             'picture': pictures.get(player.initial)
@@ -199,7 +201,7 @@ class Vote2(Page):
 class R2a(Page):
     @staticmethod
     def is_displayed(player: Player):
-        return player.vote1 == 'stick'
+        return player.vote1 == 'stick' and player.vote2 != 'abstain'
 
 
 class R2b(Page):
@@ -239,8 +241,8 @@ class Vote3(Page):
     def vars_for_template(player):
         # Map treatment groups to the right picture
         pictures = {
-            'complex': 'Pilot2/complex_vote2.JPG',
-            'simple': 'Pilot2/simple_vote2.JPG',
+            'complex': 'complex/vote2.JPG',
+            'simple': 'simple_plant/vote2.JPG',
         }
         return {
             'picture': pictures.get(player.initial)
@@ -250,7 +252,7 @@ class Vote3(Page):
 class R3a(Page):
     @staticmethod
     def is_displayed(player: Player):
-        return player.vote2 == 'stick'
+        return player.vote2 == 'stick' and player.vote3 != 'abstain'
 
     @staticmethod
     def app_after_this_page(player, upcoming_apps):
@@ -268,7 +270,6 @@ class R3b(Page):
     @staticmethod
     def app_after_this_page(player, upcoming_apps):
         return 'Survey'
-
 
 
 page_sequence = [

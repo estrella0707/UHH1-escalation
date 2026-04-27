@@ -60,13 +60,13 @@ Make your policy vote!
         <input type="radio" id="vote_stick" name="vote1" value="stick">
         <label for="vote_stick">
             <b style="font-size: larger">Supporters of the previously implemented policy</b>
-            <img src="{{ static 'Pilot2/complex_vote1.JPG' }}" alt="Stick">
+            <img src="{{ static 'complex/vote1.JPG' }}" alt="Stick">
         </label>
 
         <input type="radio" id="vote_switch" name="vote1" value="switch">
         <label for="vote_switch">
             <b style="font-size: larger">Opponents of the previously implemented policy</b>
-            <img src="{{ static 'Pilot2/simple_vote0.JPG' }}" alt="Switch">
+            <img src="{{ static 'simple_plant/vote0.JPG' }}" alt="Switch">
         </label>
 
 
@@ -74,16 +74,24 @@ Make your policy vote!
         <input type="radio" id="vote_stick" name="vote1" value="stick">
         <label for="vote_stick">
             <b style="font-size: larger">Supporters of the previously implemented policy</b>
-            <img src="{{ static 'Pilot2/simple_vote1.JPG' }}" alt="Stick">
+            <img src="{{ static 'simple_plant/vote1.JPG' }}" alt="Stick">
         </label>
 
         <input type="radio" id="vote_switch" name="vote1" value="switch">
         <label for="vote_switch">
             <b style="font-size: larger">Opponents of the previously implemented policy</b>
-            <img src="{{ static 'Pilot2/complex_vote0.JPG' }}" alt="Switch">
+            <img src="{{ static 'complex/vote0.JPG' }}" alt="Switch">
         </label>
         {% endif %}
     </div>
+
+<div style="text-align: center; margin-top: 30px;">
+    <input type="radio" id="vote_abstain" name="vote1" value="abstain" style="display: none;">
+    <label for="vote_abstain" id="abstain-label" class="btn btn-outline-secondary">
+        Abstain
+    </label>
+</div>
+
 {{ formfield_errors 'vote1' }}
 
 <br>
