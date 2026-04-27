@@ -53,6 +53,13 @@ Make your policy vote!
             width: 100%;  /* or adjust as needed */
             height: auto;
         }
+
+        #vote_abstain:checked + #abstain-label {
+            background-color: #6c757d;
+            color: white;
+            border: 2px solid #343a40;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
     </style>
 
     <div class="image-choice-container">
@@ -60,13 +67,13 @@ Make your policy vote!
         <input type="radio" id="vote_stick" name="vote2" value="stick">
         <label for="vote_stick">
             <b style="font-size: larger">Supporters of the previously chosen policy</b>
-            <img src="{{ static 'Pilot2/complex_vote2.JPG' }}" alt="Stick">
+            <img src="{{ static 'complex/vote2.JPG' }}" alt="Stick">
         </label>
 
         <input type="radio" id="vote_switch" name="vote2" value="switch">
         <label for="vote_switch">
             <b style="font-size: larger">Opponents of the previously chosen policy</b>
-            <img src="{{ static 'Pilot2/simple_vote0.JPG' }}" alt="Switch">
+            <img src="{{ static 'simple/vote0.JPG' }}" alt="Switch">
         </label>
 
 
@@ -74,16 +81,24 @@ Make your policy vote!
         <input type="radio" id="vote_stick" name="vote2" value="stick">
         <label for="vote_stick">
             <b style="font-size: larger">Supporters of the previously chosen policy</b>
-            <img src="{{ static 'Pilot2/simple_vote2.JPG' }}" alt="Stick">
+            <img src="{{ static 'simple/vote2.JPG' }}" alt="Stick">
         </label>
 
         <input type="radio" id="vote_switch" name="vote2" value="switch">
         <label for="vote_switch">
             <b style="font-size: larger">Opponents of the previously chosen policy</b>
-            <img src="{{ static 'Pilot2/complex_vote0.JPG' }}" alt="Switch">
+            <img src="{{ static 'complex/vote0.JPG' }}" alt="Switch">
         </label>
         {% endif %}
     </div>
+
+<div style="text-align: center; margin-top: 30px;">
+    <input type="radio" id="vote_abstain" name="vote2" value="abstain" style="display: none;">
+    <label for="vote_abstain" id="abstain-label" class="btn btn-outline-secondary">
+        Abstain
+    </label>
+</div>
+
 {{ formfield_errors 'vote2' }}
 
 <br>
