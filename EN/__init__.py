@@ -136,8 +136,8 @@ class Vote1(Page):
     def vars_for_template(player):
         # Map treatment groups to the right picture
         pictures = {
-            'complex': 'Pilot2/complex_vote0.JPG',
-            'simple': 'Pilot2/simple_vote0.JPG',
+            'complex': 'complex/vote0.JPG',
+            'simple': 'simple/vote0.JPG',
         }
         return {
             'picture': pictures.get(player.vote0)
@@ -187,8 +187,8 @@ class Vote2(Page):
     def vars_for_template(player):
         # Map treatment groups to the right picture
         pictures = {
-            'complex': 'Pilot2/complex_vote1.JPG',
-            'simple': 'Pilot2/simple_vote1.JPG',
+            'complex': 'complex/vote1.JPG',
+            'simple': 'simple/vote1.JPG',
         }
         return {
             'picture': pictures.get(player.vote0)
@@ -238,8 +238,8 @@ class Vote3(Page):
     def vars_for_template(player):
         # Map treatment groups to the right picture
         pictures = {
-            'complex': 'Pilot2/complex_vote2.JPG',
-            'simple': 'Pilot2/simple_vote2.JPG',
+            'complex': 'complex/vote2.JPG',
+            'simple': 'simple/vote2.JPG',
         }
         return {
             'picture': pictures.get(player.vote0)
