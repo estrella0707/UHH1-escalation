@@ -214,7 +214,7 @@ class R1a(Page):
 
     @staticmethod
     def app_after_this_page(player, upcoming_apps):
-        if player.success == 1:
+        if player.success == 1 and player.vote1 == 'stick':
             return 'Success'
 
 
@@ -228,7 +228,9 @@ class R1b(Page):
 
     @staticmethod
     def app_after_this_page(player, upcoming_apps):
-        if player.success == 0:
+        if player.success == 1:
+            return 'Success'
+        else:
             return 'Failure'
 
 
@@ -275,7 +277,7 @@ class R2a(Page):
 
     @staticmethod
     def app_after_this_page(player, upcoming_apps):
-        if player.success == 1:
+        if player.success == 1 and player.vote2 == 'stick':
             return 'Success'
 
 
@@ -289,7 +291,9 @@ class R2b(Page):
 
     @staticmethod
     def app_after_this_page(player, upcoming_apps):
-        if player.success == 0:
+        if player.success == 1:
+            return 'Success'
+        else:
             return 'Failure'
 
 
