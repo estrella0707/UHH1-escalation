@@ -47,6 +47,13 @@ Which policy would you support? <b style="color:red;">Please indicate your choic
             width: 100%;  /* or adjust as needed */
             height: auto;
         }
+
+        #vote_abstain:checked + #abstain-label {
+            background-color: #6c757d;
+            color: white;
+            border: 2px solid #343a40;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
     </style>
 
 {% if player.complex_left_simple_right %}
@@ -54,7 +61,7 @@ Which policy would you support? <b style="color:red;">Please indicate your choic
         <input type="radio" id="vote_complex" name="vote0" value='complex'>
         <label for="vote_complex">
             <b style="font-size: larger">Option 1</b>
-            <img src="{{ static 'complex/vote0.JPG' }}" alt="option1">
+            <img src="{{ static 'complex_plant/vote0.JPG' }}" alt="option1">
         </label>
 
         <input type="radio" id="vote_simple" name="vote0" value='simple'>
@@ -74,10 +81,18 @@ Which policy would you support? <b style="color:red;">Please indicate your choic
         <input type="radio" id="vote_complex" name="vote0" value='complex'>
         <label for="vote_complex">
             <b style="font-size: larger">Option 2</b>
-            <img src="{{ static 'complex/vote0.JPG' }}" alt="option1">
+            <img src="{{ static 'complex_plant/vote0.JPG' }}" alt="option1">
         </label>
     </div>
 {% endif %}
+
+<div style="text-align: center; margin-top: 30px;">
+    <input type="radio" id="vote_abstain" name="vote0" value="abstain" style="display: none;">
+    <label for="vote_abstain" id="abstain-label" class="btn btn-outline-secondary">
+        Abstain
+    </label>
+</div>
+
 {{ formfield_errors 'vote0' }}
 
 <br>

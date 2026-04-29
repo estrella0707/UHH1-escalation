@@ -18,8 +18,32 @@ The Ongoing Policy
 </div>
 <br>
 <br>
-<p>You will now read about the policy that was determined and implemented by the government of Planet X very recently. You will also read the government's argument for this policy. </p>
-<img src="{{ static picture }}" alt="" style="max-width: 50%; height: auto; display: block;" class="mx-auto">
+<p>The parliament is now debating on this issue. Now you can see the two policies and corresponding arguments side by side.</p>
+{% if player.complex_left_simple_right %}
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <img src="{{ static 'complex/given.JPG' }}" class="img-fluid mb-3" style="max-width: 100%;">
+    </div>
+
+    <div class="col-md-6">
+      <img src="{{ static 'simple/given.JPG' }}" class="img-fluid mb-3" style="max-width: 100%;">
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <img src="{{ static 'simple/given.JPG' }}" class="img-fluid mb-3" style="max-width: 100%;">
+    </div>
+
+    <div class="col-md-6">
+      <img src="{{ static 'complex/given.JPG' }}" class="img-fluid mb-3" style="max-width: 100%;">
+    </div>
+  </div>
+</div>
+{% endif %}
 <br>
 
 <button class="btn btn-primary" style="display: none" id="next-button">Next</button>

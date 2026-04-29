@@ -67,7 +67,7 @@ Make your policy vote!
         <input type="radio" id="vote_stick" name="vote2" value="stick">
         <label for="vote_stick">
             <b style="font-size: larger">Supporters of the previously chosen policy</b>
-            <img src="{{ static 'complex/vote2.JPG' }}" alt="Stick">
+            <img src="{{ static 'complex_chance/vote2.JPG' }}" alt="Stick">
         </label>
 
         <input type="radio" id="vote_switch" name="vote2" value="switch">
@@ -87,7 +87,7 @@ Make your policy vote!
         <input type="radio" id="vote_switch" name="vote2" value="switch">
         <label for="vote_switch">
             <b style="font-size: larger">Opponents of the previously chosen policy</b>
-            <img src="{{ static 'complex/vote0.JPG' }}" alt="Switch">
+            <img src="{{ static 'complex_chance/vote0.JPG' }}" alt="Switch">
         </label>
         {% endif %}
     </div>
@@ -105,17 +105,17 @@ Make your policy vote!
 {% load static %}
 <link rel="stylesheet" href="{% static 'likert.css' %}">
 <div class="likert-line">
-    <span class="question-label"><b>How confident are you that the policy you choose will work?</b></span>
-    <span class="end-label">Very unconfident</span>
+    <span class="question-label"><b>How high do you think the chance is that the policy you choose will work?</b></span>
+    <span class="end-label">Very unlikely</span>
     <div class="likert-scale">
         {% for i in "1234567" %}
         <input type="radio" name="confidence2" id="conf2{{ i }}" value="{{ i }}">
         <label for="conf2{{ i }}"></label>
         {% endfor %}
     </div>
-    <span class="end-label">Very confident</span>
+    <span class="end-label">Very likely</span>
 </div>
-{{ formfield_errors 'confidence2' }}
+{{ formfield_errors 'chance2' }}
 <br>
 
 {{ next_button }}

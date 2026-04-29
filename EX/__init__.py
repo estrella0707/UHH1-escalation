@@ -9,6 +9,7 @@ exogenous
 def creating_session(subsession):
     # Treatment randomization
     for player in subsession.get_players():
+        player.complex_left_simple_right = random.choice([True, False])  # image position randomization
         player.first_logic_then_language = random.choice([True, False])
         player.first_argument_then_policy = random.choice([True, False])
         player.initial = random.choice(['complex', 'simple'])
@@ -51,6 +52,7 @@ class Player(BasePlayer):
     initial = models.StringField()
     first_logic_then_language = models.BooleanField()  # randomize the order of questions
     first_argument_then_policy = models.BooleanField()  # randomize the order of questions
+    complex_left_simple_right = models.BooleanField()  # randomize left/right position
 
     # Comprehension check question
     cq_bg = models.StringField(
@@ -59,20 +61,25 @@ class Player(BasePlayer):
     )
 
     # Manipulation check question
-    mq_logic = models.IntegerField(choices=range(1, 8))
-    mq_language = models.IntegerField(choices=range(1, 8))
-    mq_fault = models.IntegerField(choices=range(1, 8))
+    complex_logic = models.IntegerField(choices=range(1, 8))
+    complex_language = models.IntegerField(choices=range(1, 8))
+    complex_fault = models.IntegerField(choices=range(1, 8))
+    simple_logic = models.IntegerField(choices=range(1, 8))
+    simple_language = models.IntegerField(choices=range(1, 8))
+    simple_fault = models.IntegerField(choices=range(1, 8))
 
     # Choice
-    confidence0_argument = models.IntegerField(choices=range(1, 8))
-    confidence0_policy = models.IntegerField(choices=range(1, 8))
+    chance0_complex_argument = models.IntegerField(choices=range(1, 8))
+    chance0_complex_policy = models.IntegerField(choices=range(1, 8))
+    chance0_simple_argument = models.IntegerField(choices=range(1, 8))
+    chance0_simple_policy = models.IntegerField(choices=range(1, 8))
 
     vote1 = models.StringField(
         widget=widgets.RadioSelect,
         choices=['stick', 'switch', 'abstain'],
         initial=''
     )
-    confidence1 = models.IntegerField(choices=range(1, 8))
+    chance1 = models.IntegerField(choices=range(1, 8))
     why1_argument = models.IntegerField(choices=range(1, 8))
     why1_policy = models.IntegerField(choices=range(1, 8))
     why1 = models.LongStringField(
@@ -85,7 +92,7 @@ class Player(BasePlayer):
         choices=['stick', 'switch', 'abstain'],
         initial=''
     )
-    confidence2 = models.IntegerField(choices=range(1, 8))
+    chance2 = models.IntegerField(choices=range(1, 8))
     why2_argument = models.IntegerField(choices=range(1, 8))
     why2_policy = models.IntegerField(choices=range(1, 8))
     why2 = models.LongStringField(
@@ -98,7 +105,7 @@ class Player(BasePlayer):
         choices=['stick', 'switch', 'abstain'],
         initial=''
     )
-    confidence3 = models.IntegerField(choices=range(1, 8))
+    chance3 = models.IntegerField(choices=range(1, 8))
     why3_argument = models.IntegerField(choices=range(1, 8))
     why3_policy = models.IntegerField(choices=range(1, 8))
     why3 = models.LongStringField(
@@ -118,39 +125,25 @@ class Q1(Page):
 
 
 class Given(Page):
-    @staticmethod
-    def vars_for_template(player):
-        # Map treatment groups to the right picture
-        pictures = {
-            'complex': 'complex/given.JPG',
-            'simple': 'simple/given.JPG',
-        }
-        return {
-            'picture': pictures.get(player.initial)
-        }
+    pass
 
 
 class Q2(Page):
     form_model = 'player'
-    form_fields = ['mq_logic', 'mq_language', 'mq_fault',
-                   'confidence0_argument', 'confidence0_policy']
-
-    @staticmethod
-    def vars_for_template(player):
-        # Map treatment groups to the right picture
-        pictures = {
-            'complex': 'complex/given.JPG',
-            'simple': 'simple/given.JPG',
-        }
-        return {
-            'picture': pictures.get(player.initial)
-        }
+    form_fields = ['complex_logic', 'complex_language', 'complex_fault',
+                   'chance0_complex_argument', 'chance0_complex_policy',
+                   'simple_logic', 'simple_language', 'simple_fault',
+                   'chance0_simple_argument', 'chance0_simple_policy']
 
 
 # R1a, R2a, R3a: display the chosen policy in this round of voting
 # R1b, R2b, R3b: if participants switch, ask why they switch
 # R0c, R1c, R2c: display that the policy fails
 # R0d, R1d, R2d: supporters and opponents explain why the policy fails
+class R0a(Page):
+    pass
+
+
 class R0c(Page):
     pass
 
@@ -165,7 +158,7 @@ class Instruction(Page):
 
 class Vote1(Page):
     form_model = 'player'
-    form_fields = ['vote1', 'confidence1']
+    form_fields = ['vote1', 'chance1']
 
     @staticmethod
     def vars_for_template(player):
@@ -221,7 +214,7 @@ class Vote2(Page):
         return player.vote1 == 'stick'
 
     form_model = 'player'
-    form_fields = ['vote2', 'confidence2']
+    form_fields = ['vote2', 'chance2']
 
     @staticmethod
     def vars_for_template(player):
@@ -277,7 +270,7 @@ class Vote3(Page):
         return player.vote2 == 'stick'
 
     form_model = 'player'
-    form_fields = ['vote3', 'confidence3']
+    form_fields = ['vote3', 'chance3']
 
     @staticmethod
     def vars_for_template(player):
@@ -323,7 +316,7 @@ page_sequence = [
     Background, Q1,
     Given,
     Q2,
-    R0c, R0d,
+    R0a, R0c, R0d,
     Instruction, Vote1, R1a, R1b, R1c, R1d,
     Vote2, R2a, R2b, R2c, R2d,
     Vote3, R3a, R3b,

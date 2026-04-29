@@ -105,17 +105,17 @@ Make your policy vote!
 {% load static %}
 <link rel="stylesheet" href="{% static 'likert.css' %}">
 <div class="likert-line">
-    <span class="question-label"><b>How confident are you that the policy you choose will work?</b></span>
-    <span class="end-label">Very unconfident</span>
+    <span class="question-label"><b>How high do you think the chance is that the policy you choose will work?</b></span>
+    <span class="end-label">Very unlikely</span>
     <div class="likert-scale">
         {% for i in "1234567" %}
         <input type="radio" name="confidence1" id="conf1{{ i }}" value="{{ i }}">
         <label for="conf1{{ i }}"></label>
         {% endfor %}
     </div>
-    <span class="end-label">Very confident</span>
+    <span class="end-label">Very likely</span>
 </div>
-{{ formfield_errors 'confidence1' }}
+{{ formfield_errors 'chance1' }}
 <br>
 
 {{ next_button }}

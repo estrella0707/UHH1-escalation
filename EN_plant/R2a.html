@@ -8,13 +8,13 @@ Your chosen policy has been implemented!
 
 {{ block content }}
 {% if player.vote0 == 'complex' and player.vote2 == 'stick' %}
-    <img src="{{ static 'complex/vote2.JPG' }}" alt="Complex Stick" style="max-width: 50%; height: auto; display: block;" class="mx-auto">
+    <img src="{{ static 'complex_plant/vote2.JPG' }}" alt="Complex Stick" style="max-width: 50%; height: auto; display: block;" class="mx-auto">
 {% elif player.vote0 == 'complex' and player.vote2 == 'switch' %}
     <img src="{{ static 'simple_plant/vote0.JPG' }}" alt="Complex Switch" style="max-width: 50%; height: auto; display: block;" class="mx-auto">
 {% elif player.vote0 == 'simple' and player.vote2 == 'stick' %}
     <img src="{{ static 'simple_plant/vote2.JPG' }}" alt="Simple Stick" style="max-width: 50%; height: auto; display: block;" class="mx-auto">
 {% elif player.vote0 == 'simple' and player.vote2 == 'switch' %}
-    <img src="{{ static 'complex/vote0.JPG' }}" alt="Simple Switch" style="max-width: 50%; height: auto; display: block;" class="mx-auto">
+    <img src="{{ static 'complex_plant/vote0.JPG' }}" alt="Simple Switch" style="max-width: 50%; height: auto; display: block;" class="mx-auto">
 {% endif %}
 {{ next_button }}
 {{ endblock }}

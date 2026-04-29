@@ -72,17 +72,17 @@ class Player(BasePlayer):
         choices=['complex', 'simple', 'abstain'],
         initial=''
     )
-    confidence0_complex_argument = models.IntegerField(choices=range(1, 8))
-    confidence0_complex_policy = models.IntegerField(choices=range(1, 8))
-    confidence0_simple_argument = models.IntegerField(choices=range(1, 8))
-    confidence0_simple_policy = models.IntegerField(choices=range(1, 8))
+    chance0_complex_argument = models.IntegerField(choices=range(1, 8))
+    chance0_complex_policy = models.IntegerField(choices=range(1, 8))
+    chance0_simple_argument = models.IntegerField(choices=range(1, 8))
+    chance0_simple_policy = models.IntegerField(choices=range(1, 8))
 
     vote1 = models.StringField(
         widget=widgets.RadioSelect,
         choices=['stick', 'switch', 'abstain'],
         initial=''
     )
-    confidence1 = models.IntegerField(choices=range(1, 8))
+    chance1 = models.IntegerField(choices=range(1, 8))
     why1_argument = models.IntegerField(choices=range(1, 8))
     why1_policy = models.IntegerField(choices=range(1, 8))
     why1 = models.LongStringField(
@@ -95,7 +95,7 @@ class Player(BasePlayer):
         choices=['stick', 'switch', 'abstain'],
         initial=''
     )
-    confidence2 = models.IntegerField(choices=range(1, 8))
+    chance2 = models.IntegerField(choices=range(1, 8))
     why2_argument = models.IntegerField(choices=range(1, 8))
     why2_policy = models.IntegerField(choices=range(1, 8))
     why2 = models.LongStringField(
@@ -108,7 +108,7 @@ class Player(BasePlayer):
         choices=['stick', 'switch', 'abstain'],
         initial=''
     )
-    confidence3 = models.IntegerField(choices=range(1, 8))
+    chance3 = models.IntegerField(choices=range(1, 8))
     why3_argument = models.IntegerField(choices=range(1, 8))
     why3_policy = models.IntegerField(choices=range(1, 8))
     why3 = models.LongStringField(
@@ -144,9 +144,9 @@ class Vote0(Page):
 class Q2(Page):
     form_model = 'player'
     form_fields = ['complex_logic', 'complex_language', 'complex_fault',
-                   'confidence0_complex_argument', 'confidence0_complex_policy',
+                   'chance0_complex_argument', 'chance0_complex_policy',
                    'simple_logic', 'simple_language', 'simple_fault',
-                   'confidence0_simple_argument', 'confidence0_simple_policy']
+                   'chance0_simple_argument', 'chance0_simple_policy']
 
 
 # R0a, R1a, R2a, R3a: display the chosen policy in this round of voting
@@ -167,7 +167,7 @@ class R0d(Page):
 
 class Vote1(Page):
     form_model = 'player'
-    form_fields = ['vote1', 'confidence1']
+    form_fields = ['vote1', 'chance1']
 
     @staticmethod
     def vars_for_template(player):
@@ -223,7 +223,7 @@ class Vote2(Page):
         return player.vote1 == 'stick'
 
     form_model = 'player'
-    form_fields = ['vote2', 'confidence2']
+    form_fields = ['vote2', 'chance2']
 
     @staticmethod
     def vars_for_template(player):
@@ -279,7 +279,7 @@ class Vote3(Page):
         return player.vote2 == 'stick'
 
     form_model = 'player'
-    form_fields = ['vote3', 'confidence3']
+    form_fields = ['vote3', 'chance3']
 
     @staticmethod
     def vars_for_template(player):
