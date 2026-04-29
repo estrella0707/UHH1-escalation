@@ -17,7 +17,7 @@ Make your policy vote!
 </a>
 <div class="collapse" id="bg">
     <div class="card card-body">
-    {% include "Pilot2/BG_plant.html" %}
+    {% include "global/BG_plant.html" %}
     </div>
 </div>
 <div class="collapse" id="vote">
@@ -94,29 +94,12 @@ Make your policy vote!
 
 <div style="text-align: center; margin-top: 30px;">
     <input type="radio" id="vote_abstain" name="vote1" value="abstain" style="display: none;">
-    <label for="vote_abstain" id="abstain-label" class="btn btn-outline-secondary">
+    <label for="vote_abstain" id="abstain-label" class="btn btn-outline-primary">
         Abstain
     </label>
 </div>
 
 {{ formfield_errors 'vote1' }}
-
-<br>
-{% load static %}
-<link rel="stylesheet" href="{% static 'likert.css' %}">
-<div class="likert-line">
-    <span class="question-label"><b>How high do you think the chance is that the policy you choose will work?</b></span>
-    <span class="end-label">Very unlikely</span>
-    <div class="likert-scale">
-        {% for i in "1234567" %}
-        <input type="radio" name="confidence1" id="conf1{{ i }}" value="{{ i }}">
-        <label for="conf1{{ i }}"></label>
-        {% endfor %}
-    </div>
-    <span class="end-label">Very likely</span>
-</div>
-{{ formfield_errors 'chance1' }}
-<br>
 
 {{ next_button }}
 {{ endblock }}

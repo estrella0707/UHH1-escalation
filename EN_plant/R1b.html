@@ -8,11 +8,11 @@
 {{ block content }}
 <p><b>Why did you switch to the opponents' argument and policy in the voting?</b></p>
 {% if player.first_argument_then_policy %}
-    {% include "Pilot2/why1_argument.html" %}
-    {% include "Pilot2/why1_policy.html" %}
+    {% include "global/why1_argument.html" %}
+    {% include "global/why1_policy.html" %}
 {% else %}
-    {% include "Pilot2/why1_policy.html" %}
-    {% include "Pilot2/why1_argument.html" %}
+    {% include "global/why1_policy.html" %}
+    {% include "global/why1_argument.html" %}
 {% endif %}
 <br>
 
