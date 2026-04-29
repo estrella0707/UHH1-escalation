@@ -113,6 +113,9 @@ class Player(BasePlayer):
         blank=True
     )
 
+    # whether the chosen policy succeeds
+    success = models.IntegerField(initial=0)
+
 
 # PAGES
 class Background(Page):
@@ -158,7 +161,7 @@ class Instruction(Page):
 
 class Vote1(Page):
     form_model = 'player'
-    form_fields = ['vote1', 'chance1']
+    form_fields = ['vote1']
 
     @staticmethod
     def vars_for_template(player):
@@ -178,9 +181,21 @@ class Vote1(Page):
 
 
 class R1a(Page):
+    form_model = 'player'
+    form_fields = ['chance1']
+
     @staticmethod
-    def is_displayed(player: Player):
-        return player.vote1 != 'abstain'
+    def before_next_page(player, timeout_happened):
+        draw = random.randint(1, 1000)
+        if draw == 1:
+            player.success = 1
+        else:
+            player.success = 0
+
+    @staticmethod
+    def app_after_this_page(player, upcoming_apps):
+        if player.success == 1 and player.vote1 == 'stick':
+            return 'Success'
 
 
 class R1b(Page):
@@ -193,28 +208,23 @@ class R1b(Page):
 
     @staticmethod
     def app_after_this_page(player, upcoming_apps):
-        return 'Survey'
+        if player.success == 1:
+            return 'Success'
+        else:
+            return 'Failure'
 
 
 class R1c(Page):
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.vote1 == 'stick'
+    pass
 
 
 class R1d(Page):
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.vote1 == 'stick'
+    pass
 
 
 class Vote2(Page):
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.vote1 == 'stick'
-
     form_model = 'player'
-    form_fields = ['vote2', 'chance2']
+    form_fields = ['vote2']
 
     @staticmethod
     def vars_for_template(player):
@@ -234,9 +244,21 @@ class Vote2(Page):
 
 
 class R2a(Page):
+    form_model = 'player'
+    form_fields = ['chance2']
+
     @staticmethod
-    def is_displayed(player: Player):
-        return player.vote1 == 'stick' and player.vote2 != 'abstain'
+    def before_next_page(player, timeout_happened):
+        draw = random.randint(1, 1000)
+        if draw == 1:
+            player.success = 1
+        else:
+            player.success = 0
+
+    @staticmethod
+    def app_after_this_page(player, upcoming_apps):
+        if player.success == 1 and player.vote2 == 'stick':
+            return 'Success'
 
 
 class R2b(Page):
@@ -249,28 +271,23 @@ class R2b(Page):
 
     @staticmethod
     def app_after_this_page(player, upcoming_apps):
-        return 'Survey'
+        if player.success == 1:
+            return 'Success'
+        else:
+            return 'Failure'
 
 
 class R2c(Page):
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.vote2 == 'stick'
+    pass
 
 
 class R2d(Page):
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.vote2 == 'stick'
+    pass
 
 
 class Vote3(Page):
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.vote2 == 'stick'
-
     form_model = 'player'
-    form_fields = ['vote3', 'chance3']
+    form_fields = ['vote3']
 
     @staticmethod
     def vars_for_template(player):
@@ -290,26 +307,35 @@ class Vote3(Page):
 
 
 class R3a(Page):
+    form_model = 'player'
+    form_fields = ['chance3']
+
     @staticmethod
-    def is_displayed(player: Player):
-        return player.vote2 == 'stick' and player.vote3 != 'abstain'
+    def before_next_page(player, timeout_happened):
+        draw = random.randint(1, 1000)
+        if draw == 1:
+            player.success = 1
+        else:
+            player.success = 0
 
     @staticmethod
     def app_after_this_page(player, upcoming_apps):
-        return 'Survey'
+        if player.success == 1 and player.vote3 == "stick":
+            return 'Success'
+        elif player.success == 0 and player.vote3 == "stick":
+            return 'Failure'
 
 
 class R3b(Page):
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.vote3 == 'switch'
-
     form_model = 'player'
     form_fields = ['why3_argument', 'why3_policy', 'why3']
 
     @staticmethod
     def app_after_this_page(player, upcoming_apps):
-        return 'Survey'
+        if player.success == 1:
+            return 'Success'
+        else:
+            return 'Failure'
 
 
 page_sequence = [
