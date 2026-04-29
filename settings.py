@@ -5,31 +5,31 @@ SESSION_CONFIGS = [
     dict(
         name='experiment',
         display_name="4 conditions rotation",
-        app_sequence=['Dispatcher', 'EN', 'EN_plant', 'EX', 'EX_plant', 'Survey'],
+        app_sequence=['Dispatcher', 'EN', 'EN_plant', 'EX', 'EX_plant', 'Success', 'Failure', 'Survey'],
         num_demo_participants=20,
     ),
     dict(
         name='experiment1',
         display_name="endogenous",
-        app_sequence=['EN'],
+        app_sequence=['EN', 'Success', 'Failure'],
         num_demo_participants=20,
     ),
     dict(
         name='experiment2',
         display_name="endogenous plant",
-        app_sequence=['EN_plant'],
+        app_sequence=['EN_plant', 'Success', 'Failure'],
         num_demo_participants=20,
     ),
     dict(
         name='experiment3',
         display_name="exogenous",
-        app_sequence=['EX'],
+        app_sequence=['EX', 'Success', 'Failure'],
         num_demo_participants=20,
     ),
     dict(
         name='experiment4',
         display_name="exogenous plant",
-        app_sequence=['EX_plant'],
+        app_sequence=['EX_plant', 'Success', 'Failure'],
         num_demo_participants=20,
     ),
     dict(

@@ -13,6 +13,7 @@ Now imagine three months have passed...
     <p>An evaluation of the policy leads some people to claim that its outcome may not have reached expectation. Soil acidification continues. Solar radiation remains high. Meanwhile, the number of Tivarns slightly reduces again, but still remains problematic.</p>
 {% endif %}
 
+{% if player.vote1 == 'stick' %}
 {% if player.first_argument_then_policy %}
 <p>This could be due to one of the two reasons:<br>
     - the argument regarding why these problems emerged is incorrect; or <br>
@@ -21,6 +22,7 @@ Now imagine three months have passed...
 <p>This could be due to one of the two reasons:<br>
     - the argument regarding why these problems emerged is correct, but the policy is ineffective; or <br>
     - the argument is incorrect. </p>
+{% endif %}
 {% endif %}
 
 {{ next_button }}
