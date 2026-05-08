@@ -31,6 +31,12 @@ def cq_bg_error_message(player, value):
         return "This is not the correct answer. Please read and select again."
 
 
+def perform_success_draw(player):
+    # Luck draw for 0.1% probability to solve the problem
+    draw = random.randint(1, 1000)
+    player.success = 1 if draw == 1 else 0
+
+
 # PARAMETERS
 class C(BaseConstants):
     NAME_IN_URL = 'en'
@@ -159,11 +165,7 @@ class Q2(Page):
 class R0a(Page):
     @staticmethod
     def before_next_page(player, timeout_happened):
-        draw = random.randint(1, 1000)
-        if draw == 1:
-            player.success = 1
-        else:
-            player.success = 0
+        perform_success_draw(player)
 
     @staticmethod
     def app_after_this_page(player, upcoming_apps):
@@ -206,11 +208,7 @@ class R1a(Page):
 
     @staticmethod
     def before_next_page(player, timeout_happened):
-        draw = random.randint(1, 1000)
-        if draw == 1:
-            player.success = 1
-        else:
-            player.success = 0
+        perform_success_draw(player)
 
     @staticmethod
     def app_after_this_page(player, upcoming_apps):
@@ -269,11 +267,7 @@ class R2a(Page):
 
     @staticmethod
     def before_next_page(player, timeout_happened):
-        draw = random.randint(1, 1000)
-        if draw == 1:
-            player.success = 1
-        else:
-            player.success = 0
+        perform_success_draw(player)
 
     @staticmethod
     def app_after_this_page(player, upcoming_apps):
@@ -332,11 +326,7 @@ class R3a(Page):
 
     @staticmethod
     def before_next_page(player, timeout_happened):
-        draw = random.randint(1, 1000)
-        if draw == 1:
-            player.success = 1
-        else:
-            player.success = 0
+        perform_success_draw(player)
 
     @staticmethod
     def app_after_this_page(player, upcoming_apps):
