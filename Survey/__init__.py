@@ -19,6 +19,16 @@ class C(BaseConstants):
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
 
+    # feedback question
+    DEMAND = [
+        dict(name='believe', label='I made up my mind in which of the options I believed most and then ticked it.'),
+        dict(name='against', label='I made up my mind about which of the options the researchers wanted me to tick '
+                                   'and then ticked something else.'),
+        dict(name='conform', label='I made up my mind about which of the options the researchers wanted me to tick '
+                                   'and then ticked it.'),
+        dict(name='random', label='I just made a random guess, like mentally flipping a coin.')
+    ]
+
 
 class Subsession(BaseSubsession):
     pass
@@ -61,6 +71,8 @@ class Player(BasePlayer):
         label='Which political party do you most closely identify with or support?',
         choices=['Democratic Party', 'Republican Party', 'Independent', 'Prefer not to say']
     )
+    patience = models.IntegerField(choices=range(1, 8))
+    risk = models.IntegerField(choices=range(1, 8))
     immi_attitude = models.IntegerField(
         widget=widgets.RadioSelect,
         label='Which of the following statements most closely reflect your view on the number of <b>legal immigrants</b> '
@@ -73,16 +85,33 @@ class Player(BasePlayer):
                  (3, 'The number of legal immigrants today is somewhat of a problem. '
                      'We should try and decrease by a bit the number permitted to come to the US. '),
                  (4, 'The number of legal immigrants today is not a problem. '
-                     'We should keep letting in the same number of immigrants to come to the US. '),
+                     'We should keep letting the same number of legal immigrants to come to the US. '),
                  (5, 'The number of legal immigrants today is not a problem at all. '
                      'We should let even more legal immigrants come to the US. ')
                  ],
     )
+
     # Individual difference variables
     frustration1 = likert1('If my first attempt to solve a problem fails, I keep trying until I succeed.')
     frustration2 = likert1('I am willing to listen and consider alternatives for handling a problem.')
     ethic_nature = likert1('It is important to care for nature and environment.')
     ethic_secure = likert1('It is important to live in secure and safe surroundings.')
+
+    # Attention check question
+    aq = models.BooleanField(
+        label='',
+        choices=[(True, 'Yes, I have devoted full attention to the questions so far and '
+                        'I think you should use my responses for your study.'),
+                 (False, 'No, I have NOT devoted full attention to the questions so far and '
+                         'I think you should NOT use my responses for your study.')],
+        widget=widgets.RadioSelect
+    )
+
+    # Experimenter demand
+    believe = models.BooleanField(blank=True, initial=0)
+    against = models.BooleanField(blank=True, initial=0)
+    conform = models.BooleanField(blank=True, initial=0)
+    random = models.BooleanField(blank=True, initial=0)
 
 
 # PAGES
@@ -93,8 +122,8 @@ class Q3(Page):
 
 class Demographics1(Page):
     form_model = 'player'
-    form_fields = ['age', 'gender', 'education', 'stand',
-                   'party', 'immi_attitude', 'AIuse']
+    form_fields = ['age', 'gender', 'education', 'stand', 'patience', 'risk',
+                   'party', 'immi_attitude', 'AIuse', 'aq']
 
 
 class Demographics2(Page):
@@ -108,13 +137,19 @@ class Demographics2(Page):
         return survey
 
 
+class Q4(Page):
+    form_model = 'player'
+
+    @staticmethod
+    def get_form_fields(player: Player):
+        return [demand['name'] for demand in C.DEMAND]
+
+
 class ProlificCompletion(Page):
     pass
 
 
 page_sequence = [
-    Q3,
-    Demographics1,
-    Demographics2,
+    Q3, Demographics1, Demographics2, Q4,
     ProlificCompletion
 ]

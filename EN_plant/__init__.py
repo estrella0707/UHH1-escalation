@@ -10,25 +10,7 @@ def creating_session(subsession):
     # question order randomization
     for player in subsession.get_players():
         player.complex_left_simple_right = random.choice([True, False])  # image position randomization
-        player.first_logic_then_language = random.choice([True, False])
         player.first_argument_then_policy = random.choice([True, False])
-
-
-def cq_bg_choices(player):
-    # Shuffle choices at the first time loading the page
-    if 'cq_bg_choices' not in player.participant.vars:
-        choices = ['Too much rain is flooding their fields.',
-                   'The soil is becoming too acidic, and plants from other planet have appeared.',
-                   'Robots are taking over farming jobs.',
-                   'Crops are growing too fast and causing food waste.']
-        random.shuffle(choices)
-        player.participant.vars['cq_bg_choices'] = choices
-    return player.participant.vars['cq_bg_choices']
-
-
-def cq_bg_error_message(player, value):
-    if value != 'The soil is becoming too acidic, and plants from other planet have appeared.':
-        return "This is not the correct answer. Please read and select again."
 
 
 def perform_success_draw(player):
@@ -58,19 +40,15 @@ class Player(BasePlayer):
     first_argument_then_policy = models.BooleanField()  # randomize the order of questions
     complex_left_simple_right = models.BooleanField()  # randomize left/right position
 
-    # Comprehension check question
-    cq_bg = models.StringField(
-        label='What changes are farmers facing on Planet X, according to the information you just read?',
-        widget=widgets.RadioSelect,
-    )
-
     # Manipulation check question
-    complex_logic = models.IntegerField(choices=range(1, 8))
-    complex_language = models.IntegerField(choices=range(1, 8))
     complex_fault = models.IntegerField(choices=range(1, 8))
-    simple_logic = models.IntegerField(choices=range(1, 8))
-    simple_language = models.IntegerField(choices=range(1, 8))
+    complex_familiar = models.IntegerField(choices=range(1, 8))
+    complex_ethical = models.IntegerField(choices=range(1, 8))
+    complex_immediate = models.IntegerField(choices=range(1, 8))
     simple_fault = models.IntegerField(choices=range(1, 8))
+    simple_familiar = models.IntegerField(choices=range(1, 8))
+    simple_ethical = models.IntegerField(choices=range(1, 8))
+    simple_immediate = models.IntegerField(choices=range(1, 8))
 
     # Choice
     vote0 = models.StringField(
@@ -127,19 +105,6 @@ class Player(BasePlayer):
 
 
 # PAGES
-class Background(Page):
-    pass
-
-
-class Q1(Page):
-    form_model = 'player'
-    form_fields = ['cq_bg']
-
-
-class Instruction(Page):
-    pass
-
-
 class Vote0(Page):
     form_model = 'player'
     form_fields = ['vote0']
@@ -147,9 +112,11 @@ class Vote0(Page):
 
 class Q2(Page):
     form_model = 'player'
-    form_fields = ['complex_logic', 'complex_language', 'complex_fault',
+    form_fields = ['complex_fault', 'complex_familiar', 'complex_ethical',
+                   'complex_immediate',
                    'chance0_complex_argument', 'chance0_complex_policy',
-                   'simple_logic', 'simple_language', 'simple_fault',
+                   'simple_fault', 'simple_familiar', 'simple_ethical',
+                   'simple_immediate',
                    'chance0_simple_argument', 'chance0_simple_policy']
 
     @staticmethod
@@ -349,8 +316,7 @@ class R3b(Page):
 
 
 page_sequence = [
-    Background, Q1,
-    Instruction, Vote0,
+    Vote0,
     Q2,
     R0a, R0c, R0d,
     Vote1, R1a, R1b, R1c, R1d,

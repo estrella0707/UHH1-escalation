@@ -38,10 +38,44 @@ Where would you place yourself politically?
 {{ formfield player.party}}
 <br>
 
+Are you generally an impatient person, or someone who always shows great patience?
+<div class="likert-line">
+    <span class="question-label"></span>
+    <span class="end-label">Very impatient</span>
+    <div class="likert-scale">
+        {% for i in "1234567" %}
+        <input type="radio" name="patience" id="patience{{ i }}" value="{{ i }}">
+        <label for="patience{{ i }}"></label>
+        {% endfor %}
+    </div>
+    <span class="end-label">Very patient</span>
+</div>
+{{ formfield_errors 'patience' }}
+<br>
+
+How willing are you to take risks, in general?
+<div class="likert-line">
+    <span class="question-label"></span>
+    <span class="end-label">Not at all</span>
+    <div class="likert-scale">
+        {% for i in "1234567" %}
+        <input type="radio" name="risk" id="risk{{ i }}" value="{{ i }}">
+        <label for="risk{{ i }}"></label>
+        {% endfor %}
+    </div>
+    <span class="end-label">Very much so</span>
+</div>
+{{ formfield_errors 'risk' }}
+<br>
+
 {{ formfield player.immi_attitude }}
 <br>
 
 {{ formfield player.AIuse }}
+<br>
+
+We want to ask for your feedback about the responses you provided in this study. It is vital to our study that we only include responses from people who devoted their full attention to this study. This will not affect in any way the payment you will receive for taking this survey. In your honest opinion, should we use your responses, or should we discard your responses since you did not devote your full attention to the study?
+{{ formfield player.aq }}
 </form>
 
 {{ next_button }}
