@@ -1,0 +1,15 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'likert.css' %}">
+<b>How high do you think the chance is that the argument in the above leaflet correctly captures the truth?</b>
+<div class="likert-line">
+    <span class="question-label"></span>
+    <span class="end-label">Very unlikely</span>
+    <div class="likert-scale">
+        {% for i in "1234567" %}
+        <input type="radio" name="chance0_simple_argument" id="chance0_simple_argument{{ i }}" value="{{ i }}">
+        <label for="chance0_simple_argument{{ i }}"></label>
+        {% endfor %}
+    </div>
+    <span class="end-label">Very likely</span>
+</div>
+{{ formfield_errors 'chance0_simple_argument' }}

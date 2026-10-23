@@ -1,0 +1,16 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'likert.css' %}">
+
+<b>How much do the argument and policy sound familiar to you?</b>
+<div class="likert-line">
+    <span class="question-label"></span>
+    <span class="end-label">Not at all</span>
+    <div class="likert-scale">
+        {% for i in "1234567" %}
+        <input type="radio" name="simple_familiar" id="simple_familiar{{ i }}" value="{{ i }}">
+        <label for="simple_familiar{{ i }}"></label>
+        {% endfor %}
+    </div>
+    <span class="end-label">Very much so</span>
+</div>
+{{ formfield_errors 'simple_familiar' }}

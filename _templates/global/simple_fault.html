@@ -1,0 +1,15 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'likert.css' %}">
+<b>How much does the argument in the above leaflet imply that soil acidity is the fault of the Tivarns?</b>
+<div class="likert-line">
+    <span class="question-label"></span>
+    <span class="end-label">Not at all</span>
+    <div class="likert-scale">
+        {% for i in "1234567" %}
+        <input type="radio" name="simple_fault" id="simple_fault{{ i }}" value="{{ i }}">
+        <label for="simple_fault{{ i }}"></label>
+        {% endfor %}
+    </div>
+    <span class="end-label">Very much so</span>
+</div>
+{{ formfield_errors 'simple_fault' }}

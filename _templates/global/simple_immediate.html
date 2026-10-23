@@ -1,0 +1,16 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'likert.css' %}">
+
+<b>How much do you expect the policy to solve the problem immediately?</b>
+<div class="likert-line">
+    <span class="question-label"></span>
+    <span class="end-label">Not at all</span>
+    <div class="likert-scale">
+        {% for i in "1234567" %}
+        <input type="radio" name="simple_immediate" id="simple_immediate{{ i }}" value="{{ i }}">
+        <label for="simple_immediate{{ i }}"></label>
+        {% endfor %}
+    </div>
+    <span class="end-label">Very much so</span>
+</div>
+{{ formfield_errors 'simple_immediate' }}
