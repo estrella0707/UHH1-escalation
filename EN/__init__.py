@@ -15,7 +15,7 @@ def creating_session(subsession):
 
 def perform_success_draw(player):
     # Luck draw for 0.1% probability to solve the problem
-    draw = random.randint(1, 1000)
+    draw = random.randint(1, 2)
     player.success = 1 if draw == 1 else 0
 
 
